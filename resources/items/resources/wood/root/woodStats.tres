@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=3 format=3 uid="uid://bp4py70cguh7h"]
+
+[ext_resource type="Script" path="res://scripts/items/stats/root/itemsStats.gd" id="1_au6l0"]
+[ext_resource type="Texture2D" uid="uid://lj7ms8ol78pw" path="res://assets/images/items/resources/wood/root/wood.png" id="2_rwxd0"]
+
+[resource]
+script = ExtResource("1_au6l0")
+sprite = ExtResource("2_rwxd0")
+type = "wood"
+amount = 1

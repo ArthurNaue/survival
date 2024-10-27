@@ -1,0 +1,144 @@
+[gd_scene load_steps=10 format=3 uid="uid://brqvbt8euur7w"]
+
+[ext_resource type="Script" path="res://scripts/entities/player/root/player.gd" id="1_7lwcm"]
+[ext_resource type="Texture2D" uid="uid://cxhk02miteual" path="res://assets/images/player/root/player.png" id="1_nwyi2"]
+[ext_resource type="Texture2D" uid="uid://lj7ms8ol78pw" path="res://assets/images/items/resources/wood/root/wood.png" id="3_jp3qp"]
+[ext_resource type="Texture2D" uid="uid://xdsjqs8buwpc" path="res://assets/images/items/resources/stone/root/stone.png" id="4_5vfm0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7l67m"]
+size = Vector2(13, 14)
+
+[sub_resource type="Animation" id="Animation_pjobl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_8ckij"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_jhqyk"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.349066, 0.0, -0.349066, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ou77w"]
+_data = {
+"RESET": SubResource("Animation_pjobl"),
+"idle": SubResource("Animation_8ckij"),
+"walk": SubResource("Animation_jhqyk")
+}
+
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation") groups=["player"]]
+collision_layer = 2
+script = ExtResource("1_7lwcm")
+sprite = NodePath("sprite")
+animation = NodePath("anim")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_nwyi2")
+
+[node name="col" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_7l67m")
+
+[node name="camera" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ou77w")
+}
+autoplay = "idle"
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="col" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_7l67m")
+
+[node name="gui" type="CanvasLayer" parent="."]
+
+[node name="inventoryRect" type="ColorRect" parent="gui"]
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 459.0
+offset_bottom = 646.0
+color = Color(0.941176, 0.964706, 0.941176, 1)
+
+[node name="inventoryRect" type="ColorRect" parent="gui/inventoryRect"]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 456.0
+offset_bottom = 643.0
+color = Color(0.133333, 0.137255, 0.137255, 1)
+
+[node name="woodAmountText" type="RichTextLabel" parent="gui"]
+offset_left = 82.0
+offset_top = 574.0
+offset_right = 122.0
+offset_bottom = 614.0
+scale = Vector2(2, 2)
+bbcode_enabled = true
+
+[node name="wood" type="Sprite2D" parent="gui"]
+position = Vector2(54, 592)
+scale = Vector2(5, 5)
+texture = ExtResource("3_jp3qp")
+
+[node name="rockAmountText" type="RichTextLabel" parent="gui"]
+offset_left = 74.0
+offset_top = 487.0
+offset_right = 114.0
+offset_bottom = 527.0
+scale = Vector2(2, 2)
+bbcode_enabled = true
+
+[node name="stone" type="Sprite2D" parent="gui"]
+position = Vector2(54, 511)
+scale = Vector2(5, 5)
+texture = ExtResource("4_5vfm0")
+
+[node name="statsText" type="RichTextLabel" parent="gui"]
+offset_left = 108.0
+offset_top = 2.0
+offset_right = 168.0
+offset_bottom = 42.0
+scale = Vector2(4, 4)
+bbcode_enabled = true
+text = "[center]STATS"

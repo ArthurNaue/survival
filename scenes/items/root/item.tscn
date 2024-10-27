@@ -1,0 +1,88 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1c1suq05yv3e"]
+
+[ext_resource type="Script" path="res://scripts/items/root/item.gd" id="1_6x1xf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lctf7"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_anbxl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hitbox/col:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ke17n"]
+resource_name = "float"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hitbox/col:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x6f65"]
+_data = {
+"RESET": SubResource("Animation_anbxl"),
+"float": SubResource("Animation_ke17n")
+}
+
+[node name="item" type="StaticBody2D" node_paths=PackedStringArray("sprite")]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_6x1xf")
+sprite = NodePath("sprite")
+
+[node name="sprite" type="Sprite2D" parent="."]
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="col" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_lctf7")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_x6f65")
+}
+autoplay = "float"
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
