@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cy2kk2fomrxuf"
-path="res://.godot/imported/forest.png-a9f36f4633ac1a3338d463759fe5d1ae.ctex"
+uid="uid://dctbbglu01f1o"
+path="res://.godot/imported/iron.png-72e81d12bbffd10bb974898feb724a00.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/images/tilemap/root/forest.png"
-dest_files=["res://.godot/imported/forest.png-a9f36f4633ac1a3338d463759fe5d1ae.ctex"]
+source_file="res://assets/images/items/resources/iron/root/iron.png"
+dest_files=["res://.godot/imported/iron.png-72e81d12bbffd10bb974898feb724a00.ctex"]
 
 [params]
 

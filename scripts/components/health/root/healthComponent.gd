@@ -4,8 +4,8 @@ class_name HealthComponent
 @export var healthBarComponent: HealthBarComponent
 @export var anim: AnimationPlayer
 
-var maxHealth := 3
-@onready var health := maxHealth
+@onready var maxHealth = owner.stats.health
+@onready var health = maxHealth
 
 func _ready() -> void:
 	if healthBarComponent:

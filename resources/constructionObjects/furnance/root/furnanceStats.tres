@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ConstructionObjectsStats" load_steps=6 format=3 uid="uid://dce2asm78uw25"]
+
+[ext_resource type="Resource" uid="uid://c3vwr4y0tieqj" path="res://resources/items/resources/stone/root/stoneStats.tres" id="1_8r75g"]
+[ext_resource type="Resource" uid="uid://bpgpe5wl8r21o" path="res://resources/items/resources/iron/root/ironStats.tres" id="2_h1wjv"]
+[ext_resource type="Texture2D" uid="uid://w1juspoi5ey1" path="res://assets/images/constructions/furnance/root/furnance.png" id="2_k4cwu"]
+[ext_resource type="Script" path="res://scripts/constructionObjects/stats/root/constructionObjectsStats.gd" id="3_5odj5"]
+[ext_resource type="Resource" uid="uid://bp4py70cguh7h" path="res://resources/items/resources/wood/root/woodStats.tres" id="4_gfl4f"]
+
+[resource]
+script = ExtResource("3_5odj5")
+sprite = ExtResource("2_k4cwu")
+firstIngredient = ExtResource("1_8r75g")
+secondIngredient = ExtResource("4_gfl4f")
+resultItem = ExtResource("2_h1wjv")

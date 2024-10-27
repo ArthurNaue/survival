@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/world/resourceObjects/root/resourceObjects.gd" id="1_1axd1"]
 [ext_resource type="Texture2D" uid="uid://b2m7dsadgm178" path="res://assets/images/world/tree/root/tree.png" id="1_u5d8q"]
-[ext_resource type="Resource" uid="uid://bp4py70cguh7h" path="res://resources/items/resources/wood/root/woodStats.tres" id="2_6sh6k"]
+[ext_resource type="Resource" uid="uid://dtjwabqaluuxq" path="res://resources/resourceObjects/tree/root/treeStats.tres" id="2_1aksf"]
 [ext_resource type="Script" path="res://scripts/components/health/root/healthComponent.gd" id="2_omc26"]
 [ext_resource type="Script" path="res://scripts/components/healthBar/root/healthBarComponent.gd" id="3_uohmi"]
 [ext_resource type="Script" path="res://scripts/components/damageButton/root/damageButtonComponent.gd" id="4_jljux"]
@@ -76,7 +76,7 @@ _data = {
 [node name="tree" type="StaticBody2D"]
 collision_mask = 2
 script = ExtResource("1_1axd1")
-drop = ExtResource("2_6sh6k")
+stats = ExtResource("2_1aksf")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_u5d8q")

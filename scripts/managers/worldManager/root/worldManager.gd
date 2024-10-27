@@ -7,8 +7,7 @@ var resourceObjects := [
 	load("res://scenes/world/rock/root/rock.tscn")
 ]
 
-
-func spawn_item_drop(itemStats: ItemStats, location: Vector2) -> void:
+func spawn_item_drop(itemStats, location: Vector2) -> void:
 	var itemDrop = itemDropScene.instantiate() as StaticBody2D
 	itemDrop.stats = itemStats
 	get_world().add_child(itemDrop)

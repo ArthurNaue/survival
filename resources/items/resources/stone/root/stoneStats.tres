@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_4sb37")
 sprite = ExtResource("2_x8boa")
-type = "rock"
+type = "stone"
 amount = 1

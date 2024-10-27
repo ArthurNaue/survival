@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ResourceObjectsStats" load_steps=3 format=3 uid="uid://bkqm4fp34ty5s"]
+
+[ext_resource type="Resource" uid="uid://c3vwr4y0tieqj" path="res://resources/items/resources/stone/root/stoneStats.tres" id="1_1hjhe"]
+[ext_resource type="Script" path="res://scripts/world/resourceObjects/stats/root/resourceObjectsStats.gd" id="1_ivy0y"]
+
+[resource]
+script = ExtResource("1_ivy0y")
+health = 5
+drop = ExtResource("1_1hjhe")
