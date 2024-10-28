@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://brqvbt8euur7w"]
+[gd_scene load_steps=13 format=3 uid="uid://brqvbt8euur7w"]
 
 [ext_resource type="Script" path="res://scripts/entities/player/root/player.gd" id="1_7lwcm"]
 [ext_resource type="Texture2D" uid="uid://cxhk02miteual" path="res://assets/images/player/root/player.png" id="1_nwyi2"]
 [ext_resource type="Texture2D" uid="uid://lj7ms8ol78pw" path="res://assets/images/items/resources/wood/root/wood.png" id="3_jp3qp"]
 [ext_resource type="Texture2D" uid="uid://xdsjqs8buwpc" path="res://assets/images/items/resources/stone/root/stone.png" id="4_5vfm0"]
 [ext_resource type="Texture2D" uid="uid://w1juspoi5ey1" path="res://assets/images/constructions/furnance/root/furnance.png" id="5_oeo6j"]
+[ext_resource type="Texture2D" uid="uid://dc7fi78xt52iu" path="res://assets/images/constructions/craftingStation/root/crafting station.png" id="6_es71t"]
 [ext_resource type="Texture2D" uid="uid://dctbbglu01f1o" path="res://assets/images/items/resources/iron/root/iron.png" id="6_fxwsa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7l67m"]
@@ -150,6 +151,17 @@ offset_right = 14.0
 offset_bottom = 16.0
 flat = true
 
+[node name="craftingStation" type="Sprite2D" parent="gui"]
+position = Vector2(150, 125)
+scale = Vector2(2, 2)
+texture = ExtResource("6_es71t")
+
+[node name="craftingStationButton" type="Button" parent="gui/craftingStation"]
+offset_left = -14.0
+offset_top = -13.0
+offset_right = 26.0
+offset_bottom = 29.0
+
 [node name="iron" type="Sprite2D" parent="gui"]
 position = Vector2(52, 448)
 scale = Vector2(4, 4)
@@ -172,3 +184,4 @@ bbcode_enabled = true
 text = "[center]STATS"
 
 [connection signal="pressed" from="gui/furnance/furnanceButton" to="." method="_on_furnance_button_pressed"]
+[connection signal="pressed" from="gui/craftingStation/craftingStationButton" to="." method="_on_crafting_station_button_pressed"]

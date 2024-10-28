@@ -33,6 +33,12 @@ func _input(_event: InputEvent) -> void:
 
 func _on_furnance_button_pressed() -> void:
 	if ConstructionManager.buildMode == false:
-		ConstructionManager.turn_build_mode_on($gui/furnance.texture)
+		ConstructionManager.turn_build_mode_on(ConstructionManager.constructions.furnance)
 	else:
-		ConstructionManager.turn_build_node_off()
+		ConstructionManager.turn_build_mode_off()
+
+func _on_crafting_station_button_pressed() -> void:
+	if ConstructionManager.buildMode == false:
+		ConstructionManager.turn_build_mode_on(ConstructionManager.constructions.craftingStation)
+	else:
+		ConstructionManager.turn_build_mode_off()

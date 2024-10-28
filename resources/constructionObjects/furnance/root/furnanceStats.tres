@@ -8,7 +8,9 @@
 
 [resource]
 script = ExtResource("3_5odj5")
-sprite = ExtResource("2_k4cwu")
+firstRequirement = ExtResource("1_8r75g")
+secondRequirement = ExtResource("4_gfl4f")
 firstIngredient = ExtResource("1_8r75g")
 secondIngredient = ExtResource("4_gfl4f")
 resultItem = ExtResource("2_h1wjv")
+sprite = ExtResource("2_k4cwu")

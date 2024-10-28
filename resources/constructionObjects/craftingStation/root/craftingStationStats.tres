@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ConstructionObjectsStats" load_steps=6 format=3 uid="uid://bb3dv5u2xce0u"]
+
+[ext_resource type="Script" path="res://scripts/constructionObjects/stats/root/constructionObjectsStats.gd" id="1_efov3"]
+[ext_resource type="Resource" uid="uid://bpgpe5wl8r21o" path="res://resources/items/resources/iron/root/ironStats.tres" id="1_vlaww"]
+[ext_resource type="Resource" uid="uid://c3vwr4y0tieqj" path="res://resources/items/resources/stone/root/stoneStats.tres" id="2_wt0wm"]
+[ext_resource type="Resource" uid="uid://bp4py70cguh7h" path="res://resources/items/resources/wood/root/woodStats.tres" id="4_b3g38"]
+[ext_resource type="Texture2D" uid="uid://dc7fi78xt52iu" path="res://assets/images/constructions/craftingStation/root/crafting station.png" id="5_djhb8"]
+
+[resource]
+script = ExtResource("1_efov3")
+firstRequirement = ExtResource("1_vlaww")
+secondRequirement = ExtResource("4_b3g38")
+firstIngredient = ExtResource("1_vlaww")
+secondIngredient = ExtResource("1_vlaww")
+resultItem = ExtResource("2_wt0wm")
+sprite = ExtResource("5_djhb8")
