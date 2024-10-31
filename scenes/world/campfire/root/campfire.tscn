@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://bf6dnfpckiet0"]
+
+[ext_resource type="Script" path="res://scripts/world/campfire/root/campfire.gd" id="1_gqt87"]
+[ext_resource type="Texture2D" uid="uid://bijdsaknb5tmk" path="res://assets/images/world/campfire/root/campfire.png" id="1_ltyrb"]
+[ext_resource type="Script" path="res://scripts/components/interactText/root/interactTextComponent.gd" id="2_c5jdo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvhoq"]
+size = Vector2(48, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_528hi"]
+size = Vector2(57, 44)
+
+[node name="campfire" type="StaticBody2D"]
+script = ExtResource("1_gqt87")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_ltyrb")
+
+[node name="col" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_cvhoq")
+
+[node name="interactTextComponent" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_c5jdo")
+
+[node name="interactText" type="RichTextLabel" parent="."]
+visible = false
+offset_left = -115.0
+offset_top = -45.0
+offset_right = 115.0
+offset_bottom = -5.0
+scale = Vector2(0.8, 0.8)
+pivot_offset = Vector2(115, 20)
+bbcode_enabled = true
+text = "THIS REMINDS YOU OF HOME"
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="col" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_528hi")
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]

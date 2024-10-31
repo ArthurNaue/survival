@@ -3,8 +3,8 @@ extends Node2D
 const itemDropScene = preload("res://scenes/items/root/item.tscn")
 
 var resourceObjects := [
-	load("res://scenes/world/tree/root/tree.tscn"),
-	load("res://scenes/world/rock/root/rock.tscn")
+	load("res://scenes/resourceObjects/tree/root/tree.tscn"),
+	load("res://scenes/resourceObjects/rock/root/rock.tscn")
 ]
 
 func spawn_item_drop(itemStats, location: Vector2) -> void:

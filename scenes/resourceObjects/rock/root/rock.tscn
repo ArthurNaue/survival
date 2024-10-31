@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://cgol6uoqdcvtj"]
 
-[ext_resource type="Script" path="res://scripts/world/resourceObjects/root/resourceObjects.gd" id="1_6xegt"]
-[ext_resource type="Texture2D" uid="uid://dne6w5dgho0vy" path="res://assets/images/world/rock/root/rock.png" id="1_waexf"]
+[ext_resource type="Script" path="res://scripts/resourceObjects/root/resourceObjects.gd" id="1_6xegt"]
+[ext_resource type="Texture2D" uid="uid://dne6w5dgho0vy" path="res://assets/images/resourceObjects/rock/root/rock.png" id="1_waexf"]
 [ext_resource type="Resource" uid="uid://bkqm4fp34ty5s" path="res://resources/resourceObjects/rock/root/rockStats.tres" id="2_6mld6"]
 [ext_resource type="Script" path="res://scripts/components/damageButton/root/damageButtonComponent.gd" id="2_nv7lx"]
 [ext_resource type="Script" path="res://scripts/components/health/root/healthComponent.gd" id="3_rlpai"]
@@ -122,4 +122,3 @@ autoplay = "idle"
 
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="pressed" from="damageButtonComponent" to="damageButtonComponent" method="_on_pressed"]
-[connection signal="UpdateBar" from="healthBarComponent" to="healthBarComponent" method="_on_update_bar"]

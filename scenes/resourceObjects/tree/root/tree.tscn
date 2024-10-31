@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://q8vpbvjgr54"]
 
-[ext_resource type="Script" path="res://scripts/world/resourceObjects/root/resourceObjects.gd" id="1_1axd1"]
-[ext_resource type="Texture2D" uid="uid://b2m7dsadgm178" path="res://assets/images/world/tree/root/tree.png" id="1_u5d8q"]
+[ext_resource type="Script" path="res://scripts/resourceObjects/root/resourceObjects.gd" id="1_1axd1"]
+[ext_resource type="Texture2D" uid="uid://b2m7dsadgm178" path="res://assets/images/resourceObjects/tree/root/tree.png" id="1_u5d8q"]
 [ext_resource type="Resource" uid="uid://dtjwabqaluuxq" path="res://resources/resourceObjects/tree/root/treeStats.tres" id="2_1aksf"]
 [ext_resource type="Script" path="res://scripts/components/health/root/healthComponent.gd" id="2_omc26"]
 [ext_resource type="Script" path="res://scripts/components/healthBar/root/healthBarComponent.gd" id="3_uohmi"]
@@ -122,5 +122,4 @@ libraries = {
 autoplay = "idle"
 
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
-[connection signal="UpdateBar" from="healthBarComponent" to="healthBarComponent" method="_on_update_bar"]
 [connection signal="pressed" from="damageButtonComponent" to="damageButtonComponent" method="_on_pressed"]

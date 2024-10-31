@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c407t8daykb32"]
+[gd_scene load_steps=8 format=3 uid="uid://c407t8daykb32"]
 
 [ext_resource type="Script" path="res://scripts/constructionObjects/root/constructionObjects.gd" id="1_8pj86"]
+[ext_resource type="Script" path="res://scripts/components/interactText/root/interactTextComponent.gd" id="2_7pg6d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ub67g"]
 size = Vector2(128.956, 495.78)
@@ -63,20 +64,17 @@ libraries = {
 "": SubResource("AnimationLibrary_6cc28")
 }
 
-[node name="interactText" type="RichTextLabel" parent="."]
-visible = false
-offset_left = -5.0
-offset_top = -39.0
-offset_right = 9.0
-offset_bottom = -15.0
-text = "E"
-
 [node name="hitbox" type="Area2D" parent="."]
 collision_mask = 2
 
 [node name="col" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_gj5r5")
+
+[node name="interactTextComponent" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_7pg6d")
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]

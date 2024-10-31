@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ResourceObjectsStats" load_steps=3 format=3 uid="uid://dtjwabqaluuxq"]
 
 [ext_resource type="Resource" uid="uid://bp4py70cguh7h" path="res://resources/items/resources/wood/root/woodStats.tres" id="1_3lwxh"]
-[ext_resource type="Script" path="res://scripts/world/resourceObjects/stats/root/resourceObjectsStats.gd" id="1_yypsq"]
+[ext_resource type="Script" path="res://scripts/resourceObjects/stats/root/resourceObjectsStats.gd" id="1_yypsq"]
 
 [resource]
 script = ExtResource("1_yypsq")
