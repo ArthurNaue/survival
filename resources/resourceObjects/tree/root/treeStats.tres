@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="ResourceObjectsStats" load_steps=3 format=3 uid="uid://dtjwabqaluuxq"]
+[gd_resource type="Resource" script_class="ResourceObjectsStats" load_steps=4 format=3 uid="uid://dtjwabqaluuxq"]
 
 [ext_resource type="Resource" uid="uid://bp4py70cguh7h" path="res://resources/items/resources/wood/root/woodStats.tres" id="1_3lwxh"]
 [ext_resource type="Script" path="res://scripts/resourceObjects/stats/root/resourceObjectsStats.gd" id="1_yypsq"]
+[ext_resource type="Texture2D" uid="uid://b2m7dsadgm178" path="res://assets/images/resourceObjects/tree/root/tree.png" id="3_c1ngp"]
 
 [resource]
 script = ExtResource("1_yypsq")
-health = 3
+sprite = ExtResource("3_c1ngp")
+health = 2
 drop = ExtResource("1_3lwxh")

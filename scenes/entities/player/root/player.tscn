@@ -67,7 +67,8 @@ _data = {
 }
 
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "animation", "gui") groups=["player"]]
-collision_layer = 2
+collision_layer = 16
+collision_mask = 31
 script = ExtResource("1_7lwcm")
 sprite = NodePath("sprite")
 animation = NodePath("anim")
@@ -90,7 +91,8 @@ libraries = {
 autoplay = "idle"
 
 [node name="hitbox" type="Area2D" parent="."]
-collision_layer = 2
+collision_layer = 16
+collision_mask = 6
 
 [node name="col" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(0.5, 0)
