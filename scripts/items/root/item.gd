@@ -11,5 +11,5 @@ func _ready() -> void:
 
 func _on_hitbox_area_entered(_area: Area2D) -> void:
 	if _area.owner.is_in_group("player"):
-		PlayerManager.update_resources(stats, "+")
+		PlayerManager.update_resources(stats, PlayerManager.operation.add)
 		queue_free()

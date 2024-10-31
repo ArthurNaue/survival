@@ -23,8 +23,8 @@ func _process(_delta: float) -> void:
 
 func spawn_construction_object(object: ConstructionObjectsStats, location: Vector2) -> void:
 	if check_requirements():
-		PlayerManager.update_resources(object.firstRequirement, "-")
-		PlayerManager.update_resources(object.secondRequirement, "-")
+		PlayerManager.update_resources(object.firstRequirement, PlayerManager.operation.sub)
+		PlayerManager.update_resources(object.secondRequirement, PlayerManager.operation.sub)
 		var construction = constructionObjectScene.instantiate() as ConstructionObject
 		construction.stats = object
 		construction.global_position = location

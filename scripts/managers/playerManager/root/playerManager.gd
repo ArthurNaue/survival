@@ -1,46 +1,32 @@
 extends Node2D
 
 var money := 0
-var wood := 0
-var stone := 0
-var iron := 0
 
-var resources: Dictionary
+enum materialType {
+	wood,
+	stone,
+	iron
+}
 
-func update_resources(item: ItemStats, operation: String):
-	match item.type:
-		"wood":
-			if operation == "+":
-				wood += item.amount
-			else:
-				wood -= item.amount
-		"stone":
-			if operation == "+":
-				stone += item.amount
-			else:
-				stone -= item.amount
-		"iron":
-			if operation == "+":
-				iron += item.amount
-			else:
-				iron -= item.amount
-	
-	resources = {
-		"wood": wood,
-		"stone": stone,
-		"iron": iron
-	}
+enum operation {
+	add,
+	sub
+}
+
+var resources := {
+	materialType.wood: 0,
+	materialType.stone: 0,
+	materialType.iron: 0
+}
+
+func update_resources(item: ItemStats, currentOperation: int):
+	if currentOperation == operation.sub:
+		resources[item.type] -= item.amount
+	else:
+		resources[item.type] += item.amount
 
 func check_resources(item: ItemStats) -> bool:
 	var returnValue := false
-	match item.type:
-		"wood":
-			if wood > 0:
-				returnValue = true
-		"stone":
-			if stone > 0:
-				returnValue = true
-		"iron":
-			if iron > 0:
-				returnValue = true
+	if resources[item.type] > 0:
+		returnValue = true
 	return returnValue

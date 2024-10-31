@@ -14,8 +14,8 @@ func _ready() -> void:
 
 func make_item() -> void:
 	if PlayerManager.check_resources(stats.firstIngredient) and PlayerManager.check_resources(stats.secondIngredient):
-		PlayerManager.update_resources(stats.firstIngredient, "-")
-		PlayerManager.update_resources(stats.secondIngredient, "-")
+		PlayerManager.update_resources(stats.firstIngredient, PlayerManager.operation.sub)
+		PlayerManager.update_resources(stats.secondIngredient, PlayerManager.operation.sub)
 		WorldManager.spawn_item_drop(stats.resultItem, Vector2(global_position.x, global_position.y + 30))
 		animation.play("use")
 

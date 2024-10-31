@@ -6,5 +6,5 @@
 [resource]
 script = ExtResource("1_rq10x")
 sprite = ExtResource("2_ckt7k")
-type = "iron"
+type = 2
 amount = 1

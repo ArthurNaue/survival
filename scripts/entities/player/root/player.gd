@@ -21,9 +21,9 @@ func _physics_process(_delta: float) -> void:
 
 	move_and_slide()
 	
-	$gui/wood/woodAmountText.text = "[center]" + str(PlayerManager.wood)
-	$gui/stone/stoneAmountText.text = "[center]" + str(PlayerManager.stone)
-	$gui/iron/ironAmountText.text = "[center]" + str(PlayerManager.iron)
+	$gui/wood/woodAmountText.text = "[center]" + str(PlayerManager.resources[PlayerManager.materialType.wood])
+	$gui/stone/stoneAmountText.text = "[center]" + str(PlayerManager.resources[PlayerManager.materialType.stone])
+	$gui/iron/ironAmountText.text = "[center]" + str(PlayerManager.resources[PlayerManager.materialType.iron])
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("TAB"):
