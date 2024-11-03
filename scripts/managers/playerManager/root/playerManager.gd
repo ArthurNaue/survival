@@ -5,7 +5,10 @@ var money := 0
 enum materialType {
 	wood,
 	stone,
-	iron
+	rawIron,
+	iron,
+	rawGold,
+	gold
 }
 
 enum operation {
@@ -16,6 +19,9 @@ enum operation {
 var resources := {
 	materialType.wood: 0,
 	materialType.stone: 0,
+	materialType.rawIron: 0,
+	materialType.rawGold: 0,
+	materialType.gold: 0,
 	materialType.iron: 0
 }
 

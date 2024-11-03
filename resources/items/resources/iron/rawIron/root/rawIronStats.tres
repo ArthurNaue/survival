@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=3 format=3 uid="uid://cnlifv7dbe3p5"]
+
+[ext_resource type="Script" path="res://scripts/items/stats/root/itemsStats.gd" id="1_ero8s"]
+[ext_resource type="Texture2D" uid="uid://dq84f1ei5s0ud" path="res://assets/images/items/resources/iron/rawIron/root/rawIron.png" id="2_2gr7a"]
+
+[resource]
+script = ExtResource("1_ero8s")
+sprite = ExtResource("2_2gr7a")
+type = 2
+amount = 1

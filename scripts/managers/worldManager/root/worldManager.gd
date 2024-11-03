@@ -6,7 +6,8 @@ const resourceObject = preload("res://scenes/resourceObjects/root/resourceObject
 var resourceObjects := [
 	load("res://resources/resourceObjects/tree/root/treeStats.tres"),
 	load("res://resources/resourceObjects/rock/root/rockStats.tres"),
-	load("res://resources/resourceObjects/ironRock/root/ironRockStats.tres")
+	load("res://resources/resourceObjects/ironRock/root/ironRockStats.tres"),
+	load("res://resources/resourceObjects/goldRock/root/goldRock.tres")
 ]
 
 func spawn_item_drop(itemStats, location: Vector2) -> void:

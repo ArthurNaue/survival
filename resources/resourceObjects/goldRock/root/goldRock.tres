@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ResourceObjectsStats" load_steps=4 format=3 uid="uid://bjfgm7waqnbsr"]
+
+[ext_resource type="Resource" uid="uid://bhxu7u7pekyo1" path="res://resources/items/resources/gold/rawGold/root/rawGoldStats.tres" id="1_fvn8g"]
+[ext_resource type="Script" path="res://scripts/resourceObjects/stats/root/resourceObjectsStats.gd" id="1_o815a"]
+[ext_resource type="Texture2D" uid="uid://bgx2821im380d" path="res://assets/images/resourceObjects/goldRock/root/goldRock.png" id="2_2188h"]
+
+[resource]
+script = ExtResource("1_o815a")
+sprite = ExtResource("2_2188h")
+health = 25
+drop = ExtResource("1_fvn8g")

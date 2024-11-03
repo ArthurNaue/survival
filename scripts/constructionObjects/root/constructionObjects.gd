@@ -13,9 +13,17 @@ func _ready() -> void:
 	sprite.texture = stats.sprite
 
 func make_item() -> void:
-	if PlayerManager.check_resources(stats.firstIngredient) and PlayerManager.check_resources(stats.secondIngredient):
-		PlayerManager.update_resources(stats.firstIngredient, PlayerManager.operation.sub)
-		PlayerManager.update_resources(stats.secondIngredient, PlayerManager.operation.sub)
+	var ingredientNumber := 0
+	var ingredientMet: bool
+	for ingredient in stats.ingredientsNumber:
+		ingredientNumber += 1
+		if PlayerManager.check_resources(ingredient):
+			ingredientNumber -= 1
+	if ingredientNumber <= 0:
+		ingredientMet = true
+	if ingredientMet:
+		for ingredient in stats.ingredientsNumber:
+			PlayerManager.update_resources(ingredient, PlayerManager.operation.sub)
 		WorldManager.spawn_item_drop(stats.resultItem, Vector2(global_position.x, global_position.y + 30))
 		animation.play("use")
 

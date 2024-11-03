@@ -33,12 +33,14 @@ func _input(_event: InputEvent) -> void:
 
 func _on_furnance_button_pressed() -> void:
 	if ConstructionManager.buildMode == false:
-		ConstructionManager.turn_build_mode_on(ConstructionManager.constructions.furnance)
+		ConstructionManager.change_build_mode_object(ConstructionManager.constructions.furnance)
+		ConstructionManager.turn_build_mode_on()
 	else:
 		ConstructionManager.turn_build_mode_off()
 
 func _on_crafting_station_button_pressed() -> void:
 	if ConstructionManager.buildMode == false:
-		ConstructionManager.turn_build_mode_on(ConstructionManager.constructions.craftingStation)
+		ConstructionManager.change_build_mode_object(ConstructionManager.constructions.craftingStation)
+		ConstructionManager.turn_build_mode_on()
 	else:
 		ConstructionManager.turn_build_mode_off()

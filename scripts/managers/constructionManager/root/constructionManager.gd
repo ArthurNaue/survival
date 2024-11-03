@@ -11,6 +11,7 @@ var buildMode := false
 var constructionSprite: Sprite2D
 var constructionObject: ConstructionObjectsStats
 var tutorialText: RichTextLabel
+var object: ConstructionObjectsStats
 
 func _process(_delta: float) -> void:
 	if ConstructionManager.buildMode == true:
@@ -21,10 +22,10 @@ func _process(_delta: float) -> void:
 		else:
 			constructionSprite.modulate = Color.RED
 
-func spawn_construction_object(object: ConstructionObjectsStats, location: Vector2) -> void:
+func spawn_construction_object(location: Vector2) -> void:
 	if check_requirements():
-		PlayerManager.update_resources(object.firstRequirement, PlayerManager.operation.sub)
-		PlayerManager.update_resources(object.secondRequirement, PlayerManager.operation.sub)
+		for requirement in constructionObject.requirementNumber:
+			PlayerManager.update_resources(requirement, PlayerManager.operation.sub)
 		var construction = constructionObjectScene.instantiate() as ConstructionObject
 		construction.stats = object
 		construction.global_position = location
@@ -32,7 +33,10 @@ func spawn_construction_object(object: ConstructionObjectsStats, location: Vecto
 		WorldManager.get_world().add_child(construction)
 		turn_build_mode_off()
 
-func turn_build_mode_on(object: ConstructionObjectsStats) -> void:
+func change_build_mode_object(newObject: ConstructionObjectsStats) -> void:
+	object = newObject
+
+func turn_build_mode_on() -> void:
 	buildMode = true
 	tutorialText = RichTextLabel.new()
 	tutorialText.text = "Q / CANCEL
@@ -51,14 +55,19 @@ func turn_build_mode_off() -> void:
 	tutorialText.queue_free()
 
 func check_requirements() -> bool:
+	var requirementsNumber := 0
 	var requirementsMet := false
-	if PlayerManager.check_resources(constructionObject.firstRequirement) and PlayerManager.check_resources(constructionObject.secondRequirement):
+	for requirement in constructionObject.requirementNumber:
+		requirementsNumber += 1
+		if PlayerManager.check_resources(requirement):
+			requirementsNumber -= 1
+	if requirementsNumber <= 0:
 		requirementsMet = true
 	return requirementsMet
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("M1") and buildMode == true and get_player().gui.visible == false:
-		spawn_construction_object(constructionObject, get_global_mouse_position())
+		spawn_construction_object(get_global_mouse_position())
 	if Input.is_action_just_pressed("Q") and buildMode == true:
 		turn_build_mode_off()
 	if Input.is_action_just_pressed("R") and buildMode == true:

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=3 format=3 uid="uid://1r6fca0soe5u"]
+
+[ext_resource type="Script" path="res://scripts/items/stats/root/itemsStats.gd" id="1_bay61"]
+[ext_resource type="Texture2D" uid="uid://dbmrfeinypqaf" path="res://assets/images/items/resources/gold/root/gold.png" id="2_t35kp"]
+
+[resource]
+script = ExtResource("1_bay61")
+sprite = ExtResource("2_t35kp")
+type = 5
+amount = 1
