@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=3 format=3 uid="uid://culp2w8jt50ux"]
+
+[ext_resource type="Script" path="res://scripts/items/stats/root/itemsStats.gd" id="1_0onf7"]
+[ext_resource type="Texture2D" uid="uid://db57m5xmnkjy5" path="res://assets/images/items/resources/wood/refinedWood/root/refinedWood.png" id="2_nblwu"]
+
+[resource]
+script = ExtResource("1_0onf7")
+sprite = ExtResource("2_nblwu")
+type = 1
+amount = 0

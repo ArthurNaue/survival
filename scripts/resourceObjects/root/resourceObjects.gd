@@ -10,4 +10,5 @@ func _ready() -> void:
 	sprite.texture = stats.sprite
 
 func _on_tree_exited() -> void:
+	WorldManager.spawnedResourceObjects += 1
 	WorldManager.spawn_item_drop(stats.drop, global_position)

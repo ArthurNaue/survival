@@ -1,9 +1,8 @@
 extends Node2D
 
-var money := 0
-
 enum materialType {
 	wood,
+	refinedWood,
 	stone,
 	rawIron,
 	iron,
@@ -18,6 +17,7 @@ enum operation {
 
 var resources := {
 	materialType.wood: 0,
+	materialType.refinedWood: 0,
 	materialType.stone: 0,
 	materialType.rawIron: 0,
 	materialType.rawGold: 0,
