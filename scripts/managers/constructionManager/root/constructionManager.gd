@@ -2,9 +2,15 @@ extends Node2D
 
 const constructionObjectScene = preload("res://scenes/constructions/root/construction.tscn")
 
+enum constructionTypes {
+	craftingStation,
+	wall
+}
+
 var constructions := {
 	"furnance": load("res://resources/constructionObjects/furnance/root/furnanceStats.tres"),
-	"craftingStation": load("res://resources/constructionObjects/craftingStation/root/craftingStationStats.tres")
+	"craftingStation": load("res://resources/constructionObjects/craftingStation/root/craftingStationStats.tres"),
+	"refinedWoodWall" : load("res://resources/constructionObjects/refinedWoodWall/root/refinedWoodWallStats.tres")
 }
 
 var buildMode := false

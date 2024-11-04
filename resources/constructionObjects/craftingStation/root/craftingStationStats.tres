@@ -9,6 +9,7 @@
 
 [resource]
 script = ExtResource("1_efov3")
+constructionType = 0
 requirementNumber = Array[ExtResource("1_6g32c")]([ExtResource("1_vlaww"), ExtResource("4_b3g38")])
 ingredientsNumber = Array[ExtResource("1_6g32c")]([ExtResource("4_b3g38")])
 resultItem = ExtResource("4_1fwb7")

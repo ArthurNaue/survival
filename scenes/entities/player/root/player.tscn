@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://brqvbt8euur7w"]
+[gd_scene load_steps=11 format=3 uid="uid://brqvbt8euur7w"]
 
 [ext_resource type="Script" path="res://scripts/entities/player/root/player.gd" id="1_7lwcm"]
 [ext_resource type="Texture2D" uid="uid://cxhk02miteual" path="res://assets/images/player/root/player.png" id="1_nwyi2"]
+[ext_resource type="Texture2D" uid="uid://do1x18g15gwvu" path="res://assets/images/constructions/wallConstructions/refinedWoodWall/root/refinedWoodWall.png" id="5_3v73j"]
 [ext_resource type="Texture2D" uid="uid://w1juspoi5ey1" path="res://assets/images/constructions/furnance/root/furnance.png" id="5_oeo6j"]
 [ext_resource type="Texture2D" uid="uid://dc7fi78xt52iu" path="res://assets/images/constructions/craftingStation/root/crafting station.png" id="6_es71t"]
 
@@ -138,6 +139,16 @@ offset_top = -13.0
 offset_right = 26.0
 offset_bottom = 29.0
 
+[node name="refinedWoodWall" type="Sprite2D" parent="gui"]
+position = Vector2(244, 129)
+texture = ExtResource("5_3v73j")
+
+[node name="refinedWoodWallButton" type="Button" parent="gui/refinedWoodWall"]
+offset_left = -16.0
+offset_top = -17.0
+offset_right = 98.0
+offset_bottom = 62.0
+
 [node name="statsText" type="RichTextLabel" parent="gui"]
 offset_left = 108.0
 offset_top = 2.0
@@ -149,3 +160,4 @@ text = "[center]STATS"
 
 [connection signal="pressed" from="gui/furnance/furnanceButton" to="." method="_on_furnance_button_pressed"]
 [connection signal="pressed" from="gui/craftingStation/craftingStationButton" to="." method="_on_crafting_station_button_pressed"]
+[connection signal="pressed" from="gui/refinedWoodWall/refinedWoodWallButton" to="." method="_on_refined_wood_wall_button_pressed"]

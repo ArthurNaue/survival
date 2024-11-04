@@ -1,6 +1,8 @@
 extends Resource
 class_name ConstructionObjectsStats
 
+@export var constructionType: ConstructionManager.constructionTypes
+
 @export_group("requirements")
 @export var requirementNumber: Array[ItemStats]
 @export_group("")

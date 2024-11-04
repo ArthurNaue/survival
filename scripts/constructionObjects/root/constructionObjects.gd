@@ -28,11 +28,11 @@ func make_item() -> void:
 		animation.play("use")
 
 func _on_hitbox_area_entered(_area: Area2D) -> void:
-	if _area.owner.is_in_group("player"):
+	if _area.owner.is_in_group("player") and stats.constructionType == ConstructionManager.constructionTypes.craftingStation:
 		interactText.switch_visibility.emit()
 
 func _on_hitbox_area_exited(_area: Area2D) -> void:
-	if _area.owner.is_in_group("player"):
+	if _area.owner.is_in_group("player") and stats.constructionType == ConstructionManager.constructionTypes.craftingStation:
 		interactText.switch_visibility.emit()
 
 func _input(_event: InputEvent) -> void:

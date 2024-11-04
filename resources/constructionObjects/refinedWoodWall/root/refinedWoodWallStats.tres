@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ConstructionObjectsStats" load_steps=5 format=3 uid="uid://wpxlcw78oi7f"]
+
+[ext_resource type="Script" path="res://scripts/items/stats/root/itemsStats.gd" id="1_qh1pk"]
+[ext_resource type="Script" path="res://scripts/constructionObjects/stats/root/constructionObjectsStats.gd" id="2_1ycno"]
+[ext_resource type="Texture2D" uid="uid://do1x18g15gwvu" path="res://assets/images/constructions/wallConstructions/refinedWoodWall/root/refinedWoodWall.png" id="2_8b44v"]
+[ext_resource type="Resource" uid="uid://culp2w8jt50ux" path="res://resources/items/resources/wood/refinedWood/root/refinedWoodStats.tres" id="2_f8sv1"]
+
+[resource]
+script = ExtResource("2_1ycno")
+constructionType = 1
+requirementNumber = Array[ExtResource("1_qh1pk")]([ExtResource("2_f8sv1")])
+ingredientsNumber = null
+sprite = ExtResource("2_8b44v")
