@@ -5,6 +5,13 @@ extends CharacterBody2D
 @export var animation: AnimationPlayer
 @export var gui: CanvasLayer
 
+var resourcesTexts: Array[ResourcesText]
+var materialTypeNumber := 0
+var x := 100
+
+func _ready() -> void:
+	create_resource_text()
+
 func _physics_process(_delta: float) -> void:
 	#movement
 	var moveVector = Vector2.ZERO
@@ -20,10 +27,6 @@ func _physics_process(_delta: float) -> void:
 		velocity = Vector2.ZERO
 
 	move_and_slide()
-	
-	$gui/wood/woodAmountText.text = "[center]" + str(PlayerManager.resources[PlayerManager.materialType.wood])
-	$gui/stone/stoneAmountText.text = "[center]" + str(PlayerManager.resources[PlayerManager.materialType.stone])
-	$gui/iron/ironAmountText.text = "[center]" + str(PlayerManager.resources[PlayerManager.materialType.iron])
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_pressed("TAB"):
@@ -44,3 +47,14 @@ func _on_crafting_station_button_pressed() -> void:
 		ConstructionManager.turn_build_mode_on()
 	else:
 		ConstructionManager.turn_build_mode_off()
+
+func create_resource_text() -> void:
+	for resource in PlayerManager.materialType:
+		var resourcesText = ResourcesText.new()
+		resourcesText.value = materialTypeNumber
+		resourcesText.position = Vector2(x, 500)
+		x += 50
+		gui.add_child(resourcesText)
+		resourcesText.update_value()
+		resourcesTexts.append(resourcesText)
+		materialTypeNumber += 1

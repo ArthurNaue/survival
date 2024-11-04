@@ -31,8 +31,14 @@ func update_resources(item: ItemStats, currentOperation: int):
 	else:
 		resources[item.type] += item.amount
 
+	for resource in get_player().resourcesTexts:
+		resource.update_value()
+
 func check_resources(item: ItemStats) -> bool:
 	var returnValue := false
 	if resources[item.type] > 0:
 		returnValue = true
 	return returnValue
+
+func get_player() -> CharacterBody2D:
+	return get_tree().get_first_node_in_group("player")
