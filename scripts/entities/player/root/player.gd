@@ -7,7 +7,7 @@ extends CharacterBody2D
 
 var resourcesTexts: Array[ResourcesText]
 var materialTypeNumber := 0
-var x := 100
+var x := 50
 
 func _ready() -> void:
 	create_resource_text()
@@ -50,11 +50,15 @@ func _on_crafting_station_button_pressed() -> void:
 
 func create_resource_text() -> void:
 	for resource in PlayerManager.materialType:
+		var resourceSprite = Sprite2D.new()
 		var resourcesText = ResourcesText.new()
+		resourceSprite.texture = PlayerManager.resourcesSprites[materialTypeNumber]
+		resourceSprite.position = Vector2(x, 450)
 		resourcesText.value = materialTypeNumber
-		resourcesText.position = Vector2(x, 500)
+		resourcesText.position = Vector2(x, 550)
 		x += 50
 		gui.add_child(resourcesText)
+		gui.add_child(resourceSprite)
 		resourcesText.update_value()
 		resourcesTexts.append(resourcesText)
 		materialTypeNumber += 1

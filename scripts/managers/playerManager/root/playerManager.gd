@@ -1,5 +1,13 @@
 extends Node2D
 
+const wood = preload("res://resources/items/resources/wood/root/woodStats.tres")
+const refinedWood = preload("res://resources/items/resources/wood/refinedWood/root/refinedWoodStats.tres")
+const stone = preload("res://resources/items/resources/stone/root/stoneStats.tres")
+const rawIron = preload("res://resources/items/resources/iron/rawIron/root/rawIronStats.tres")
+const iron = preload("res://resources/items/resources/iron/root/ironStats.tres")
+const rawGold = preload("res://resources/items/resources/gold/rawGold/root/rawGoldStats.tres")
+const gold = preload("res://resources/items/resources/gold/root/goldStats.tres")
+
 enum materialType {
 	wood,
 	refinedWood,
@@ -23,6 +31,16 @@ var resources := {
 	materialType.rawGold: 0,
 	materialType.gold: 0,
 	materialType.iron: 0
+}
+
+var resourcesSprites := {
+	materialType.wood: wood.sprite,
+	materialType.refinedWood: refinedWood.sprite,
+	materialType.stone: stone.sprite,
+	materialType.rawIron: rawIron.sprite,
+	materialType.rawGold: rawGold.sprite,
+	materialType.gold: gold.sprite,
+	materialType.iron: iron.sprite
 }
 
 func update_resources(item: ItemStats, currentOperation: int):

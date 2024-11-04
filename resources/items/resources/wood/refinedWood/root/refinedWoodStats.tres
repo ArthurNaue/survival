@@ -7,4 +7,4 @@
 script = ExtResource("1_0onf7")
 sprite = ExtResource("2_nblwu")
 type = 1
-amount = 0
+amount = 1
