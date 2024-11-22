@@ -8,7 +8,3 @@ func _ready() -> void:
 
 func _on_update_bar(newValue: int) -> void:
 	value = newValue
-	if !visible:
-		visible = true
-		await get_tree().create_timer(0.5).timeout
-		visible = false

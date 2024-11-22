@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cgol6uoqdcvtj"]
+[gd_scene load_steps=14 format=3 uid="uid://cgol6uoqdcvtj"]
 
 [ext_resource type="Script" path="res://scripts/resourceObjects/root/resourceObjects.gd" id="1_6xegt"]
 [ext_resource type="Resource" uid="uid://bkqm4fp34ty5s" path="res://resources/resourceObjects/rock/root/rockStats.tres" id="2_6mld6"]
 [ext_resource type="Script" path="res://scripts/components/damageButton/root/damageButtonComponent.gd" id="2_nv7lx"]
 [ext_resource type="Script" path="res://scripts/components/health/root/healthComponent.gd" id="3_rlpai"]
 [ext_resource type="Script" path="res://scripts/components/healthBar/root/healthBarComponent.gd" id="4_4lhsr"]
+[ext_resource type="AudioStream" uid="uid://vsearg8mjcqj" path="res://assets/audio/resourceObjects/hitAudio/root/resourceObjectHitSound.wav" id="6_sl06j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ck22u"]
 bg_color = Color(0.133333, 0.137255, 0.137255, 1)
@@ -31,6 +32,42 @@ tracks/0/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hitAudio:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("damageButtonComponent:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("healthBarComponent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_un5ie"]
 resource_name = "hit"
@@ -46,6 +83,42 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, -0.174533, 0.0, 0.174533, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("hitAudio:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("damageButtonComponent:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("healthBarComponent:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_slsmk"]
@@ -123,6 +196,9 @@ autoplay = "idle"
 [node name="col" type="CollisionShape2D" parent="."]
 position = Vector2(0, 13)
 shape = SubResource("RectangleShape2D_p2doa")
+
+[node name="hitAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_sl06j")
 
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="pressed" from="damageButtonComponent" to="damageButtonComponent" method="_on_pressed"]

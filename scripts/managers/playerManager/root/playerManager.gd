@@ -69,7 +69,6 @@ func check_resources(item: ItemStats) -> bool:
 	return returnValue
 
 func create_resource_GUI(resource: ItemStats) -> void:
-	var positionOcupied := false
 	var resourceGUI = resourcesGUIScene.instantiate() as ResourcesGUI
 	resourceGUI.value = resource.type
 	get_player().get_node("gui").add_child(resourceGUI)

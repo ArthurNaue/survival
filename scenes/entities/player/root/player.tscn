@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://brqvbt8euur7w"]
+[gd_scene load_steps=11 format=3 uid="uid://brqvbt8euur7w"]
 
 [ext_resource type="Script" path="res://scripts/entities/player/root/player.gd" id="1_7lwcm"]
 [ext_resource type="Texture2D" uid="uid://cxhk02miteual" path="res://assets/images/player/root/player.png" id="1_nwyi2"]
-[ext_resource type="PackedScene" uid="uid://c0vpev6irbhhm" path="res://scenes/entities/player/gui/resources/root/resourcesGUI.tscn" id="2_co3hm"]
 [ext_resource type="Texture2D" uid="uid://do1x18g15gwvu" path="res://assets/images/constructions/wallConstructions/refinedWoodWall/root/refinedWoodWall.png" id="5_3v73j"]
 [ext_resource type="Texture2D" uid="uid://w1juspoi5ey1" path="res://assets/images/constructions/furnance/root/furnance.png" id="5_oeo6j"]
 [ext_resource type="Texture2D" uid="uid://dc7fi78xt52iu" path="res://assets/images/constructions/craftingStation/root/crafting station.png" id="6_es71t"]
@@ -72,7 +71,6 @@ script = ExtResource("1_7lwcm")
 sprite = NodePath("sprite")
 animation = NodePath("anim")
 gui = NodePath("gui")
-resourcesGUIScene = ExtResource("2_co3hm")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_nwyi2")

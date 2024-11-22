@@ -29,5 +29,11 @@ func spawn_resource_object():
 		get_world().add_child(resource)
 		resource.global_position = location
 
+func spawn_particle(particleScene: PackedScene, desiredPosition: Vector2):
+	var particle = particleScene.instantiate() as CPUParticles2D
+	particle.global_position = desiredPosition
+	get_world().add_child(particle)
+	particle.emitting = true
+
 func get_world() -> Node2D:
 	return get_tree().get_first_node_in_group("world")
