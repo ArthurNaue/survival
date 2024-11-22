@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://c0vpev6irbhhm"]
+
+[ext_resource type="Script" path="res://scripts/entities/player/gui/resources/root/resourcesGUI.gd" id="1_0s2j4"]
+
+[node name="resourcesGUI" type="Node2D" node_paths=PackedStringArray("sprite", "text")]
+script = ExtResource("1_0s2j4")
+sprite = NodePath("sprite")
+text = NodePath("text")
+
+[node name="sprite" type="Sprite2D" parent="."]
+
+[node name="text" type="RichTextLabel" parent="."]
+offset_top = 14.0
+offset_right = 40.0
+offset_bottom = 54.0
+bbcode_enabled = true

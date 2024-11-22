@@ -1,5 +1,9 @@
 extends Node2D
 
+const resourcesGUIScene = preload("res://scenes/entities/player/gui/resources/root/resourcesGUI.tscn")
+var resourcesGUIs: Array[ResourcesGUI]
+var xGui := 50
+
 const wood = preload("res://resources/items/resources/wood/root/woodStats.tres")
 const refinedWood = preload("res://resources/items/resources/wood/refinedWood/root/refinedWoodStats.tres")
 const stone = preload("res://resources/items/resources/stone/root/stoneStats.tres")
@@ -47,20 +51,36 @@ func update_resources(item: ItemStats, currentOperation: int):
 	if currentOperation == operation.sub:
 		resources[item.type] -= item.amount
 		if resources[item.type] == 0:
-			get_player().destroy_resource_text(item)
+			destroy_resource_GUI(item)
 	else:
 		if resources[item.type] == 0:
-			get_player().create_resource_text(item)
+			create_resource_GUI(item)
 		resources[item.type] += item.amount
-
-	for resource in get_player().resourcesTexts:
-		resource.update_value()
+	
+	for resourceGUI in resourcesGUIs:
+		if resourceGUI.value == item.type:
+			resourceGUI.update_values()
 
 func check_resources(item: ItemStats) -> bool:
 	var returnValue := false
 	if resources[item.type] > 0:
 		returnValue = true
 	return returnValue
+
+func create_resource_GUI(resource: ItemStats) -> void:
+	var resourceGUI = resourcesGUIScene.instantiate() as ResourcesGUI
+	resourceGUI.value = resource.type
+	resourceGUI.position = Vector2(xGui, 500)
+	xGui += 50
+	get_player().get_node("gui").add_child(resourceGUI)
+	resourcesGUIs.append(resourceGUI)
+
+func destroy_resource_GUI(resource: ItemStats) -> void:
+	xGui -= 50
+	for resources in resourcesGUIs:
+		if resources.value == resource.type:
+			resources.queue_free()
+			resourcesGUIs.erase(resources)
 
 func get_player() -> CharacterBody2D:
 	return get_tree().get_first_node_in_group("player")
