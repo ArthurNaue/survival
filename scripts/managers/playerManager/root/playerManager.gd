@@ -46,7 +46,11 @@ var resourcesSprites := {
 func update_resources(item: ItemStats, currentOperation: int):
 	if currentOperation == operation.sub:
 		resources[item.type] -= item.amount
+		if resources[item.type] == 0:
+			get_player().destroy_resource_text(item)
 	else:
+		if resources[item.type] == 0:
+			get_player().create_resource_text(item)
 		resources[item.type] += item.amount
 
 	for resource in get_player().resourcesTexts:

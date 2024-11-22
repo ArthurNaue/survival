@@ -5,12 +5,9 @@ extends CharacterBody2D
 @export var animation: AnimationPlayer
 @export var gui: CanvasLayer
 
+var resourcesSprites: Array[Sprite2D]
 var resourcesTexts: Array[ResourcesText]
-var materialTypeNumber := 0
-var x := 50
-
-func _ready() -> void:
-	create_resource_text()
+var xGui := 50
 
 func _physics_process(_delta: float) -> void:
 	#movement
@@ -55,17 +52,27 @@ func _on_refined_wood_wall_button_pressed():
 	else:
 		ConstructionManager.turn_build_mode_off()
 
-func create_resource_text() -> void:
-	for resource in PlayerManager.materialType:
-		var resourceSprite = Sprite2D.new()
-		var resourcesText = ResourcesText.new()
-		resourceSprite.texture = PlayerManager.resourcesSprites[materialTypeNumber]
-		resourceSprite.position = Vector2(x, 450)
-		resourcesText.value = materialTypeNumber
-		resourcesText.position = Vector2(x, 550)
-		x += 50
-		gui.add_child(resourcesText)
-		gui.add_child(resourceSprite)
-		resourcesText.update_value()
-		resourcesTexts.append(resourcesText)
-		materialTypeNumber += 1
+func create_resource_text(resource: ItemStats) -> void:
+	var resourceSprite = Sprite2D.new()
+	var resourcesText = ResourcesText.new()
+	resourceSprite.texture = PlayerManager.resourcesSprites[resource.type]
+	resourceSprite.position = Vector2(xGui, 450)
+	resourcesText.value = resource.type
+	resourcesText.position = Vector2(xGui, 550)
+	xGui += 50
+	gui.add_child(resourcesText)
+	gui.add_child(resourceSprite)
+	resourcesText.update_value()
+	resourcesSprites.append(resourceSprite)
+	resourcesTexts.append(resourcesText)
+
+func destroy_resource_text(resource: ItemStats) -> void:
+	for resources in resourcesTexts:
+		if resources.value == resource.type:
+			resources.queue_free()
+			resourcesTexts.erase(resources)
+	for resources in resourcesSprites:
+		if resources.texture == PlayerManager.resourcesSprites[resource.type]:
+			resources.queue_free()
+			resourcesSprites.erase(resources)
+	xGui -= 50
