@@ -2,7 +2,8 @@ extends Node2D
 
 const resourcesGUIScene = preload("res://scenes/entities/player/gui/resources/root/resourcesGUI.tscn")
 var resourcesGUIs: Array[ResourcesGUI]
-var xGui := 50
+var yGUI: int
+var xGUI: int
 
 const wood = preload("res://resources/items/resources/wood/root/woodStats.tres")
 const refinedWood = preload("res://resources/items/resources/wood/refinedWood/root/refinedWoodStats.tres")
@@ -68,19 +69,30 @@ func check_resources(item: ItemStats) -> bool:
 	return returnValue
 
 func create_resource_GUI(resource: ItemStats) -> void:
+	var positionOcupied := false
 	var resourceGUI = resourcesGUIScene.instantiate() as ResourcesGUI
 	resourceGUI.value = resource.type
-	resourceGUI.position = Vector2(xGui, 500)
-	xGui += 50
 	get_player().get_node("gui").add_child(resourceGUI)
 	resourcesGUIs.append(resourceGUI)
+	sort_GUI()
 
 func destroy_resource_GUI(resource: ItemStats) -> void:
-	xGui -= 50
-	for resources in resourcesGUIs:
-		if resources.value == resource.type:
-			resources.queue_free()
-			resourcesGUIs.erase(resources)
+	for resourcesGUI in resourcesGUIs:
+		if resourcesGUI.value == resource.type:
+			resourcesGUI.queue_free()
+			resourcesGUIs.erase(resourcesGUI)
+	sort_GUI()
+
+func sort_GUI() -> void:
+	xGUI = 50
+	yGUI = 500
+	for resourcesGUI in resourcesGUIs:
+		resourcesGUI.position.y = yGUI
+		resourcesGUI.position.x = xGUI
+		xGUI += 50
+		if xGUI > 200:
+			xGUI = 50
+			yGUI += 50
 
 func get_player() -> CharacterBody2D:
 	return get_tree().get_first_node_in_group("player")
