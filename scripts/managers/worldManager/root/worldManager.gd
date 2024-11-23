@@ -11,6 +11,7 @@ var resourceObjects := [
 ]
 
 var spawnedResourceObjects := 0
+var mergeItemNumber := 0
 
 func spawn_item_drop(itemStats: ItemStats, amount: int, location: Vector2) -> void:
 	var itemDrop = itemDropScene.instantiate() as StaticBody2D
@@ -18,6 +19,16 @@ func spawn_item_drop(itemStats: ItemStats, amount: int, location: Vector2) -> vo
 	itemDrop.amount = amount
 	get_world().add_child(itemDrop)
 	itemDrop.global_position = location
+
+func merge_items(firstItem: Item, secondItem: Item):
+	if firstItem.stats.type == secondItem.stats.type:
+		mergeItemNumber += 1
+		if mergeItemNumber == 2:
+			var amount = firstItem.amount + secondItem.amount
+			spawn_item_drop(firstItem.stats, amount, firstItem.global_position)
+			firstItem.queue_free()
+			secondItem.queue_free()
+			mergeItemNumber = 0
 
 func spawn_resource_object() -> void:
 	if spawnedResourceObjects < 100:

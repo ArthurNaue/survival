@@ -25,6 +25,7 @@ ConstructionManager="*res://scripts/managers/constructionManager/root/constructi
 
 world=""
 player=""
+item=""
 
 [input]
 
