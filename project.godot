@@ -20,6 +20,7 @@ config/icon="res://assets/images/player/root/player.png"
 PlayerManager="*res://scripts/managers/playerManager/root/playerManager.gd"
 WorldManager="*res://scripts/managers/worldManager/root/worldManager.gd"
 ConstructionManager="*res://scripts/managers/constructionManager/root/constructionManager.gd"
+CameraManager="*res://scripts/managers/cameraManager/root/cameraManager.gd"
 
 [global_group]
 

@@ -6,6 +6,9 @@ extends CharacterBody2D
 @export var gui: CanvasLayer
 @export_group("")
 
+func _ready() -> void:
+	CameraManager.change_owner(self)
+
 func _physics_process(_delta: float) -> void:
 	#movement
 	var moveVector = Vector2.ZERO

@@ -18,4 +18,5 @@ func damage(amount: int) -> void:
 	if anim:
 		anim.play("hit")
 	if health <= 0:
+		CameraManager.apply_shake(2)
 		owner.queue_free()

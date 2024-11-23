@@ -79,9 +79,6 @@ texture = ExtResource("1_nwyi2")
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_7l67m")
 
-[node name="camera" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
-
 [node name="anim" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ou77w")

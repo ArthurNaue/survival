@@ -17,7 +17,7 @@ func spawn_item_drop(itemStats: ItemStats, amount: int, location: Vector2) -> vo
 	var itemDrop = itemDropScene.instantiate() as StaticBody2D
 	itemDrop.stats = itemStats
 	itemDrop.amount = amount
-	get_world().add_child(itemDrop)
+	get_world().call_deferred("add_child", itemDrop)
 	itemDrop.global_position = location
 
 func merge_items(firstItem: Item, secondItem: Item):
