@@ -18,5 +18,6 @@ func damage(amount: int) -> void:
 	if anim:
 		anim.play("hit")
 	if health <= 0:
+		GameManager.play_sound(load("res://assets/audio/resourceObjects/destructionAudio/root/resourceObjectDestruction.wav"), owner.global_position,)
 		CameraManager.apply_shake(2)
 		owner.queue_free()
