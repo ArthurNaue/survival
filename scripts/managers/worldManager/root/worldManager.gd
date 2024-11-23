@@ -12,13 +12,14 @@ var resourceObjects := [
 
 var spawnedResourceObjects := 0
 
-func spawn_item_drop(itemStats, location: Vector2) -> void:
+func spawn_item_drop(itemStats: ItemStats, amount: int, location: Vector2) -> void:
 	var itemDrop = itemDropScene.instantiate() as StaticBody2D
 	itemDrop.stats = itemStats
+	itemDrop.amount = amount
 	get_world().add_child(itemDrop)
 	itemDrop.global_position = location
 
-func spawn_resource_object():
+func spawn_resource_object() -> void:
 	if spawnedResourceObjects < 100:
 		spawnedResourceObjects+= 1
 		var resource = resourceObject.instantiate() as ResourceObjects
@@ -29,7 +30,7 @@ func spawn_resource_object():
 		get_world().add_child(resource)
 		resource.global_position = location
 
-func spawn_particle(particleScene: PackedScene, desiredPosition: Vector2):
+func spawn_particle(particleScene: PackedScene, desiredPosition: Vector2) -> void:
 	var particle = particleScene.instantiate() as CPUParticles2D
 	particle.global_position = desiredPosition
 	get_world().add_child(particle)

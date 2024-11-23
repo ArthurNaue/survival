@@ -11,4 +11,4 @@ func _ready() -> void:
 
 func _on_tree_exited() -> void:
 	WorldManager.spawnedResourceObjects += 1
-	WorldManager.spawn_item_drop(stats.drop, global_position)
+	WorldManager.spawn_item_drop(stats.drop, 1, global_position)

@@ -23,8 +23,8 @@ func make_item() -> void:
 		ingredientMet = true
 	if ingredientMet:
 		for ingredient in stats.ingredientsNumber:
-			PlayerManager.update_resources(ingredient, PlayerManager.operation.sub)
-		WorldManager.spawn_item_drop(stats.resultItem, Vector2(global_position.x, global_position.y + 30))
+			PlayerManager.update_resources(ingredient, 1, PlayerManager.operation.sub)
+		WorldManager.spawn_item_drop(stats.resultItem, 1, Vector2(global_position.x, global_position.y + 30))
 		animation.play("use")
 
 func _on_hitbox_area_entered(_area: Area2D) -> void:

@@ -28,6 +28,16 @@ enum operation {
 	sub
 }
 
+var itemStats := {
+	materialType.wood: load("res://resources/items/resources/wood/root/woodStats.tres"),
+	materialType.refinedWood: load("res://resources/items/resources/wood/refinedWood/root/refinedWoodStats.tres"),
+	materialType.stone: load("res://resources/items/resources/stone/root/stoneStats.tres"),
+	materialType.rawIron: load("res://resources/items/resources/iron/rawIron/root/rawIronStats.tres"),
+	materialType.rawGold: load("res://resources/items/resources/gold/rawGold/root/rawGoldStats.tres"),
+	materialType.gold: load("res://resources/items/resources/gold/root/goldStats.tres"),
+	materialType.iron: load("res://resources/items/resources/iron/root/ironStats.tres")
+}
+
 var resources := {
 	materialType.wood: 0,
 	materialType.refinedWood: 0,
@@ -48,15 +58,15 @@ var resourcesSprites := {
 	materialType.iron: iron.sprite
 }
 
-func update_resources(item: ItemStats, currentOperation: int):
+func update_resources(item: ItemStats, amount: int, currentOperation: int):
 	if currentOperation == operation.sub:
-		resources[item.type] -= item.amount
+		resources[item.type] -= amount
 		if resources[item.type] == 0:
 			destroy_resource_GUI(item)
 	else:
 		if resources[item.type] == 0:
 			create_resource_GUI(item)
-		resources[item.type] += item.amount
+		resources[item.type] += amount
 	
 	for resourceGUI in resourcesGUIs:
 		if resourceGUI.value == item.type:
