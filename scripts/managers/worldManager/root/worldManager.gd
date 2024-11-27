@@ -38,7 +38,7 @@ func spawn_resource_object() -> void:
 		var location = Vector2(randi_range(0, 1000), randi_range(0, 1000))
 		while location.distance_to(get_tree().get_first_node_in_group("player").global_position) < 200:
 			location = Vector2(randi_range(0, 1000), randi_range(0, 1000))
-		get_world().add_child(resource)
+		get_world().resourceObjects.add_child(resource)
 		resource.global_position = location
 
 func spawn_particle(particleScene: PackedScene, desiredPosition: Vector2) -> void:

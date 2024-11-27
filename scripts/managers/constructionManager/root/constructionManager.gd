@@ -1,6 +1,7 @@
 extends Node2D
 
 const constructionObjectScene = preload("res://scenes/constructions/root/construction.tscn")
+const constructSound = preload("res://assets/audio/constructionObjects/construct/root/constructSound.wav")
 
 enum constructionTypes {
 	craftingStation,
@@ -36,7 +37,9 @@ func spawn_construction_object(location: Vector2) -> void:
 		construction.stats = object
 		construction.global_position = location
 		construction.sprite.rotation_degrees = constructionSprite.rotation_degrees
-		WorldManager.get_world().add_child(construction)
+		WorldManager.get_world().constructionObjects.add_child(construction)
+		GameManager.play_sound(constructSound, location)
+		CameraManager.apply_shake(1)
 		turn_build_mode_off()
 
 func change_build_mode_object(newObject: ConstructionObjectsStats) -> void:

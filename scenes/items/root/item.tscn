@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1c1suq05yv3e"]
+[gd_scene load_steps=11 format=3 uid="uid://c1c1suq05yv3e"]
 
 [ext_resource type="Script" path="res://scripts/items/root/item.gd" id="1_6x1xf"]
+[ext_resource type="AudioStream" uid="uid://c2xsg8sofkjjg" path="res://assets/audio/player/itemPickup/root/itemPickupSound.wav" id="2_6v0vx"]
 [ext_resource type="Texture2D" uid="uid://lj7ms8ol78pw" path="res://assets/images/items/resources/wood/root/wood.png" id="2_advo2"]
+[ext_resource type="AudioStream" uid="uid://bgexp3bct5w67" path="res://assets/audio/player/itemDrop/root/itemDropSound.wav" id="3_els8o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lctf7"]
 size = Vector2(16, 16)
@@ -35,6 +37,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_ke17n"]
 resource_name = "float"
@@ -64,19 +78,39 @@ tracks/1/keys = {
 "values": [Vector2(0, 0), Vector2(0, -10)]
 }
 
+[sub_resource type="Animation" id="Animation_t83sy"]
+resource_name = "pickup"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 1.75)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x6f65"]
 _data = {
 "RESET": SubResource("Animation_anbxl"),
-"float": SubResource("Animation_ke17n")
+"float": SubResource("Animation_ke17n"),
+"pickup": SubResource("Animation_t83sy")
 }
 
-[node name="item" type="StaticBody2D" node_paths=PackedStringArray("sprite", "amountText") groups=["item"]]
+[node name="item" type="StaticBody2D" node_paths=PackedStringArray("sprite", "amountText", "anim") groups=["item"]]
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
 collision_mask = 16
 script = ExtResource("1_6x1xf")
 sprite = NodePath("sprite")
 amountText = NodePath("amountText")
+anim = NodePath("anim")
+pickupSound = ExtResource("2_6v0vx")
+dropSound = ExtResource("3_els8o")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_advo2")
@@ -111,3 +145,4 @@ text = "[center]A"
 
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="itemsHitbox" to="." method="_on_items_hitbox_area_entered"]
+[connection signal="animation_finished" from="anim" to="." method="_on_anim_animation_finished"]
