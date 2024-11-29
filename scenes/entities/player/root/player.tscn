@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://brqvbt8euur7w"]
+[gd_scene load_steps=12 format=3 uid="uid://brqvbt8euur7w"]
 
 [ext_resource type="Script" path="res://scripts/entities/player/root/player.gd" id="1_7lwcm"]
 [ext_resource type="Texture2D" uid="uid://cxhk02miteual" path="res://assets/images/player/root/player.png" id="1_nwyi2"]
-[ext_resource type="Texture2D" uid="uid://do1x18g15gwvu" path="res://assets/images/constructions/wallConstructions/refinedWoodWall/root/refinedWoodWall.png" id="5_3v73j"]
+[ext_resource type="Texture2D" uid="uid://bi7hkr6a1l276" path="res://assets/images/constructions/wallConstructions/refinedWoodWall/root/refinedWoodWall.png" id="5_3v73j"]
 [ext_resource type="Texture2D" uid="uid://w1juspoi5ey1" path="res://assets/images/constructions/furnance/root/furnance.png" id="5_oeo6j"]
 [ext_resource type="Texture2D" uid="uid://dc7fi78xt52iu" path="res://assets/images/constructions/craftingStation/root/crafting station.png" id="6_es71t"]
+[ext_resource type="PackedScene" uid="uid://cwdurmdeu7xlw" path="res://scenes/arrow/root/arrow.tscn" id="6_lm1li"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7l67m"]
 size = Vector2(13, 14)
@@ -158,6 +159,8 @@ offset_bottom = 25.0
 scale = Vector2(4, 4)
 bbcode_enabled = true
 text = "[center]STATS"
+
+[node name="campfireArrow" parent="." instance=ExtResource("6_lm1li")]
 
 [connection signal="pressed" from="gui/furnance/furnanceButton" to="." method="_on_furnance_button_pressed"]
 [connection signal="pressed" from="gui/craftingStation/craftingStationButton" to="." method="_on_crafting_station_button_pressed"]

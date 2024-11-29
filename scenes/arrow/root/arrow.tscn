@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwdurmdeu7xlw"]
+
+[ext_resource type="Script" path="res://scripts/arrow/root/arrow.gd" id="1_vtp8k"]
+[ext_resource type="Texture2D" uid="uid://bc6yj66d1kisy" path="res://assets/images/arrow/root/arrow.png" id="2_vco88"]
+
+[node name="arrow" type="Node2D"]
+script = ExtResource("1_vtp8k")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(25, 0)
+rotation = 1.5708
+texture = ExtResource("2_vco88")
+offset = Vector2(0, -8)
