@@ -21,7 +21,7 @@ func update_values() -> void:
 func _on_hitbox_area_entered(_area: Area2D) -> void:
 	if _area.owner.is_in_group("player"):
 		PlayerManager.update_resources(stats, amount, PlayerManager.operation.add)
-		GameManager.play_sound(pickupSound, PlayerManager.get_player().global_position)
+		GameManager.play_sound(pickupSound, PlayerManager.get_player().global_position, 32)
 		anim.play("pickup")
 
 func _on_items_hitbox_area_entered(_area: Area2D) -> void:
