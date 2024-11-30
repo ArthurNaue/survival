@@ -25,6 +25,7 @@ var constructionSprite: Sprite2D
 var constructionObject: ConstructionObjectsStats
 var tutorialText: RichTextLabel
 var object: ConstructionObjectsStats
+var warningTextExists := false
 
 func _process(_delta: float) -> void:
 	if ConstructionManager.buildMode == true:
@@ -36,17 +37,16 @@ func _process(_delta: float) -> void:
 			constructionSprite.modulate = Color.RED
 
 func spawn_construction_object(location: Vector2) -> void:
-	if check_requirements():
-		for requirement in constructionObject.requirementNumber:
-			PlayerManager.update_resources(requirement, 1, PlayerManager.operation.sub)
-		var construction = constructionObjectScene.instantiate() as ConstructionObject
-		construction.stats = object
-		construction.global_position = location
-		construction.sprite.rotation_degrees = constructionSprite.rotation_degrees
-		WorldManager.get_world().constructionObjects.add_child(construction)
-		GameManager.play_sound(constructSound, location)
-		CameraManager.apply_shake(1)
-		turn_build_mode_off()
+	for requirement in constructionObject.requirementNumber:
+		PlayerManager.update_resources(requirement, 1, PlayerManager.operation.sub)
+	var construction = constructionObjectScene.instantiate() as ConstructionObject
+	construction.stats = object
+	construction.global_position = location
+	construction.sprite.rotation_degrees = constructionSprite.rotation_degrees
+	WorldManager.get_world().constructionObjects.add_child(construction)
+	GameManager.play_sound(constructSound, location)
+	CameraManager.apply_shake(1)
+	turn_build_mode_off()
 
 func change_build_mode_object(newObject: ConstructionObjectsStats) -> void:
 	object = newObject
@@ -81,12 +81,31 @@ func check_requirements() -> bool:
 	return requirementsMet
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("M1") and buildMode == true and get_player().gui.visible == false:
-		spawn_construction_object(get_global_mouse_position())
+	if Input.is_action_just_pressed("M1") and buildMode:
+		if check_requirements():
+			if !get_player().gui.visible:
+				spawn_construction_object(get_global_mouse_position())
+			else:
+				warning_text("Turn the GUI off!")
+		else:
+			warning_text("Not enough resources!")
 	if Input.is_action_just_pressed("Q") and buildMode == true:
 		turn_build_mode_off()
 	if Input.is_action_just_pressed("R") and buildMode == true:
 		constructionSprite.rotation_degrees += 90
+
+func warning_text(text: String) -> void:
+	if !warningTextExists:
+		var warningText = RichTextLabel.new()
+		warningText.bbcode_enabled = true
+		warningText.size = Vector2(200, 100)
+		warningText.text = "[center]" + text
+		warningText.position = Vector2(450, 600)
+		PlayerManager.get_player().get_node("gui").add_child(warningText)
+		warningTextExists = true
+		await get_tree().create_timer(1).timeout
+		warningText.queue_free()
+		warningTextExists = false
 
 func get_player() -> CharacterBody2D:
 	return get_tree().get_first_node_in_group("player")
