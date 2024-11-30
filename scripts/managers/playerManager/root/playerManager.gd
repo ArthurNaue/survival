@@ -101,14 +101,14 @@ func check_resources(item: ItemStats) -> bool:
 func create_resource_GUI(resource: ItemStats) -> void:
 	var resourceGUI = resourcesGUIScene.instantiate() as ResourcesGUI
 	resourceGUI.value = resource.type
-	get_player().get_node("gui").add_child(resourceGUI)
+	get_player().gui.add_child(resourceGUI)
 	resourcesGUIs.append(resourceGUI)
 	sort_GUI()
 
 func create_construction_GUI(construction: ConstructionObjectsStats) -> void:
 	var constructionGUI = constructionsGUIScene.instantiate() as ConstructionsGUI
 	constructionGUI.construction = construction
-	get_player().get_node("gui").add_child(constructionGUI)
+	get_player().gui.add_child(constructionGUI)
 	constructionsGUIs.append(constructionGUI)
 	sort_GUI()
 

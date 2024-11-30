@@ -2,6 +2,7 @@ extends Node2D
 
 const constructionObjectScene = preload("res://scenes/constructions/root/construction.tscn")
 const constructSound = preload("res://assets/audio/constructionObjects/construct/root/constructSound.wav")
+const constructionErrorSound = preload("res://assets/audio/constructionObjects/construct/error/root/constructionErrorSound.wav")
 
 enum constructionTypes {
 	craftingStation,
@@ -30,6 +31,12 @@ var constructionObjectShapeColision := CollisionShape2D.new()
 var object: ConstructionObjectsStats
 var warningTextExists := false
 
+func _ready() -> void:
+	add_child(constructionSprite)
+	add_child(tutorialText)
+	add_child(constructionObjectColision)
+	constructionObjectColision.add_child(constructionObjectShapeColision)
+
 func _process(_delta: float) -> void:
 	if ConstructionManager.buildMode == true:
 		tutorialText.global_position = Vector2(get_global_mouse_position().x - 40, get_global_mouse_position().y)
@@ -55,7 +62,6 @@ func change_build_mode_object(newObject: ConstructionObjectsStats) -> void:
 func turn_build_mode_on() -> void:
 	buildMode = true
 	constructionObject = object
-	constructionSprite = Sprite2D.new()
 	tutorialText.text = "Q / CANCEL
 R / ROTATE"
 	tutorialText.size = Vector2(150, 50)
@@ -70,10 +76,6 @@ R / ROTATE"
 		_unable_to_build()
 	else:
 		_able_to_build()
-	add_child(constructionObjectColision)
-	constructionObjectColision.add_child(constructionObjectShapeColision)
-	add_child(constructionSprite)
-	add_child(tutorialText)
 
 func turn_build_mode_off() -> void:
 	buildMode = false
@@ -101,7 +103,7 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("M1") and buildMode:
 		if check_requirements():
 			if !colided:
-				if !get_player().gui.visible:
+				if !PlayerManager.get_player().gui.visible:
 					spawn_construction_object(get_global_mouse_position())
 				else:
 					warning_text("Turn the GUI off!")
@@ -109,9 +111,9 @@ func _input(_event: InputEvent) -> void:
 				warning_text("Something in the way!")
 		else:
 			warning_text("Not enough resources!")
-	if Input.is_action_just_pressed("Q") and buildMode == true:
+	if Input.is_action_just_pressed("Q") and buildMode:
 		turn_build_mode_off()
-	if Input.is_action_just_pressed("R") and buildMode == true:
+	if Input.is_action_just_pressed("R") and buildMode:
 		constructionSprite.rotation_degrees += 90
 
 func _able_to_build(_area: Area2D = null) -> void:
@@ -121,6 +123,7 @@ func _unable_to_build(_area: Area2D = null) -> void:
 	colided = true
 
 func warning_text(text: String) -> void:
+	play_error_sound()
 	if !warningTextExists:
 		var warningText = RichTextLabel.new()
 		warningText.bbcode_enabled = true
@@ -129,11 +132,11 @@ func warning_text(text: String) -> void:
 		warningText.scale = Vector2(2, 2)
 		warningText.text = "[center]" + text
 		warningText.position = Vector2(550, 600)
-		PlayerManager.get_player().get_node("gui").add_child(warningText)
+		PlayerManager.get_player().gui.add_child(warningText)
 		warningTextExists = true
 		await get_tree().create_timer(1).timeout
 		warningText.queue_free()
 		warningTextExists = false
 
-func get_player() -> CharacterBody2D:
-	return get_tree().get_first_node_in_group("player")
+func play_error_sound() -> void:
+	GameManager.play_sound(constructionErrorSound, PlayerManager.get_player().global_position)
