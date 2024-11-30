@@ -6,4 +6,4 @@ func play_sound(desiredSound: AudioStreamWAV, location: Vector2, volume := 0):
 	sound.global_position = location
 	sound.autoplay = true
 	sound.volume_db = volume
-	WorldManager.get_world().add_child(sound)
+	WorldManager.get_world().get_node("sounds").add_child(sound)

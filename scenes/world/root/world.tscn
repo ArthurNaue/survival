@@ -48,4 +48,6 @@ position = Vector2(416, 494)
 
 [node name="constructionObjects" type="Node2D" parent="."]
 
+[node name="sounds" type="Node2D" parent="."]
+
 [connection signal="timeout" from="spawnResourceObjectTimer" to="." method="_on_spawn_resource_object_timer_timeout"]

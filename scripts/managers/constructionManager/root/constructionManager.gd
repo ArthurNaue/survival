@@ -21,9 +21,12 @@ var constructionsStats := {
 }
 
 var buildMode := false
-var constructionSprite: Sprite2D
 var constructionObject: ConstructionObjectsStats
-var tutorialText: RichTextLabel
+var constructionSprite := Sprite2D.new()
+var tutorialText := RichTextLabel.new()
+var constructionObjectColision := Area2D.new()
+var colided := false
+var constructionObjectShapeColision := CollisionShape2D.new()
 var object: ConstructionObjectsStats
 var warningTextExists := false
 
@@ -31,10 +34,8 @@ func _process(_delta: float) -> void:
 	if ConstructionManager.buildMode == true:
 		tutorialText.global_position = Vector2(get_global_mouse_position().x - 40, get_global_mouse_position().y)
 		constructionSprite.global_position = get_global_mouse_position()
-		if get_player().gui.visible == false and check_requirements():
-			constructionSprite.modulate = Color.GREEN
-		else:
-			constructionSprite.modulate = Color.RED
+		constructionObjectColision.global_position = get_global_mouse_position()
+		constructionObjectShapeColision.global_position = get_global_mouse_position()
 
 func spawn_construction_object(location: Vector2) -> void:
 	for requirement in constructionObject.requirementNumber:
@@ -53,21 +54,32 @@ func change_build_mode_object(newObject: ConstructionObjectsStats) -> void:
 
 func turn_build_mode_on() -> void:
 	buildMode = true
-	tutorialText = RichTextLabel.new()
+	constructionObject = object
+	constructionSprite = Sprite2D.new()
 	tutorialText.text = "Q / CANCEL
 R / ROTATE"
 	tutorialText.size = Vector2(150, 50)
 	tutorialText.scale = Vector2(0.25, 0.25)
-	constructionSprite = Sprite2D.new()
+	constructionObjectColision.set_collision_mask_value(3, true)
+	constructionObjectColision.area_entered.connect(_unable_to_build)
+	constructionObjectColision.area_exited.connect(_able_to_build)
+	constructionObjectShapeColision.shape = RectangleShape2D.new()
+	constructionObjectShapeColision.shape.size = Vector2(32, 32)
 	constructionSprite.texture = object.sprite
-	constructionObject = object
+	if Input.is_action_pressed("TAB"):
+		_unable_to_build()
+	else:
+		_able_to_build()
+	add_child(constructionObjectColision)
+	constructionObjectColision.add_child(constructionObjectShapeColision)
 	add_child(constructionSprite)
 	add_child(tutorialText)
 
 func turn_build_mode_off() -> void:
 	buildMode = false
-	constructionSprite.queue_free()
-	tutorialText.queue_free()
+	constructionSprite.texture = null
+	tutorialText.text = ""
+	_unable_to_build()
 
 func check_requirements() -> bool:
 	var requirementsNumber := 0
@@ -81,12 +93,20 @@ func check_requirements() -> bool:
 	return requirementsMet
 
 func _input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("TAB"):
+		_unable_to_build()
+	elif Input.is_action_just_released("TAB"):
+		_able_to_build()
+	
 	if Input.is_action_just_pressed("M1") and buildMode:
 		if check_requirements():
-			if !get_player().gui.visible:
-				spawn_construction_object(get_global_mouse_position())
+			if !colided:
+				if !get_player().gui.visible:
+					spawn_construction_object(get_global_mouse_position())
+				else:
+					warning_text("Turn the GUI off!")
 			else:
-				warning_text("Turn the GUI off!")
+				warning_text("Something in the way!")
 		else:
 			warning_text("Not enough resources!")
 	if Input.is_action_just_pressed("Q") and buildMode == true:
@@ -94,13 +114,21 @@ func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("R") and buildMode == true:
 		constructionSprite.rotation_degrees += 90
 
+func _able_to_build(_area: Area2D = null) -> void:
+	colided = false
+
+func _unable_to_build(_area: Area2D = null) -> void:
+	colided = true
+
 func warning_text(text: String) -> void:
 	if !warningTextExists:
 		var warningText = RichTextLabel.new()
 		warningText.bbcode_enabled = true
-		warningText.size = Vector2(200, 100)
+		warningText.size = Vector2(200, 50)
+		warningText.pivot_offset = Vector2(100, 25)
+		warningText.scale = Vector2(2, 2)
 		warningText.text = "[center]" + text
-		warningText.position = Vector2(450, 600)
+		warningText.position = Vector2(550, 600)
 		PlayerManager.get_player().get_node("gui").add_child(warningText)
 		warningTextExists = true
 		await get_tree().create_timer(1).timeout

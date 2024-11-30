@@ -28,6 +28,7 @@ GameManager="*res://scripts/managers/gameManager/root/gameManager.gd"
 world=""
 player=""
 item=""
+constructions=""
 
 [input]
 
