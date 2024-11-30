@@ -1,10 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://brqvbt8euur7w"]
+[gd_scene load_steps=9 format=3 uid="uid://brqvbt8euur7w"]
 
 [ext_resource type="Script" path="res://scripts/entities/player/root/player.gd" id="1_7lwcm"]
 [ext_resource type="Texture2D" uid="uid://cxhk02miteual" path="res://assets/images/player/root/player.png" id="1_nwyi2"]
-[ext_resource type="Texture2D" uid="uid://bi7hkr6a1l276" path="res://assets/images/constructions/wallConstructions/refinedWoodWall/root/refinedWoodWall.png" id="5_3v73j"]
-[ext_resource type="Texture2D" uid="uid://w1juspoi5ey1" path="res://assets/images/constructions/furnance/root/furnance.png" id="5_oeo6j"]
-[ext_resource type="Texture2D" uid="uid://dc7fi78xt52iu" path="res://assets/images/constructions/craftingStation/root/crafting station.png" id="6_es71t"]
 [ext_resource type="PackedScene" uid="uid://cwdurmdeu7xlw" path="res://scenes/arrow/root/arrow.tscn" id="6_lm1li"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7l67m"]
@@ -95,7 +92,6 @@ position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_7l67m")
 
 [node name="gui" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="inventoryRect" type="ColorRect" parent="gui"]
 offset_left = 2.0
@@ -112,45 +108,6 @@ offset_right = 456.0
 offset_bottom = 643.0
 color = Color(0.133333, 0.137255, 0.137255, 1)
 
-[node name="furnance" type="Sprite2D" parent="gui"]
-position = Vector2(55, 125)
-scale = Vector2(2, 2)
-texture = ExtResource("5_oeo6j")
-
-[node name="furnanceButton" type="Button" parent="gui/furnance"]
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 1, 0)
-offset_left = -14.0
-offset_top = -16.0
-offset_right = 14.0
-offset_bottom = 16.0
-flat = true
-
-[node name="craftingStation" type="Sprite2D" parent="gui"]
-position = Vector2(150, 125)
-scale = Vector2(2, 2)
-texture = ExtResource("6_es71t")
-
-[node name="craftingStationButton" type="Button" parent="gui/craftingStation"]
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 1, 0)
-offset_left = -15.0
-offset_top = -10.0
-offset_right = 15.0
-offset_bottom = 16.0
-
-[node name="refinedWoodWall" type="Sprite2D" parent="gui"]
-position = Vector2(244, 129)
-texture = ExtResource("5_3v73j")
-
-[node name="refinedWoodWallButton" type="Button" parent="gui/refinedWoodWall"]
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 1, 0)
-offset_left = -16.0
-offset_top = -17.0
-offset_right = 16.0
-offset_bottom = 18.0
-
 [node name="statsText" type="RichTextLabel" parent="gui"]
 offset_left = 108.0
 offset_top = 2.0
@@ -161,7 +118,3 @@ bbcode_enabled = true
 text = "[center]STATS"
 
 [node name="campfireArrow" parent="." instance=ExtResource("6_lm1li")]
-
-[connection signal="pressed" from="gui/furnance/furnanceButton" to="." method="_on_furnance_button_pressed"]
-[connection signal="pressed" from="gui/craftingStation/craftingStationButton" to="." method="_on_crafting_station_button_pressed"]
-[connection signal="pressed" from="gui/refinedWoodWall/refinedWoodWallButton" to="." method="_on_refined_wood_wall_button_pressed"]

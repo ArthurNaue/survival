@@ -8,10 +8,16 @@ enum constructionTypes {
 	wall
 }
 
-var constructions := {
-	"furnance": load("res://resources/constructionObjects/furnance/root/furnanceStats.tres"),
-	"craftingStation": load("res://resources/constructionObjects/craftingStation/root/craftingStationStats.tres"),
-	"refinedWoodWall" : load("res://resources/constructionObjects/refinedWoodWall/root/refinedWoodWallStats.tres")
+enum constructions {
+	furnance,
+	craftingStation,
+	refinedWoodWall
+}
+
+var constructionsStats := {
+	constructions.furnance: load("res://resources/constructionObjects/furnance/root/furnanceStats.tres"),
+	constructions.craftingStation: load("res://resources/constructionObjects/craftingStation/root/craftingStationStats.tres"),
+	constructions.refinedWoodWall: load("res://resources/constructionObjects/refinedWoodWall/root/refinedWoodWallStats.tres")
 }
 
 var buildMode := false

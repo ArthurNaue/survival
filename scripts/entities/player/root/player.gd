@@ -30,24 +30,3 @@ func _input(_event: InputEvent) -> void:
 		gui.visible = true
 	else:
 		gui.visible = false
-
-func _on_furnance_button_pressed() -> void:
-	if ConstructionManager.buildMode == false:
-		ConstructionManager.change_build_mode_object(ConstructionManager.constructions.furnance)
-		ConstructionManager.turn_build_mode_on()
-	else:
-		ConstructionManager.turn_build_mode_off()
-
-func _on_crafting_station_button_pressed() -> void:
-	if ConstructionManager.buildMode == false:
-		ConstructionManager.change_build_mode_object(ConstructionManager.constructions.craftingStation)
-		ConstructionManager.turn_build_mode_on()
-	else:
-		ConstructionManager.turn_build_mode_off()
-
-func _on_refined_wood_wall_button_pressed():
-	if ConstructionManager.buildMode == false:
-		ConstructionManager.change_build_mode_object(ConstructionManager.constructions.refinedWoodWall)
-		ConstructionManager.turn_build_mode_on()
-	else:
-		ConstructionManager.turn_build_mode_off()

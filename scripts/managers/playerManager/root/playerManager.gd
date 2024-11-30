@@ -1,9 +1,13 @@
 extends Node2D
 
+const constructionsGUIScene = preload("res://scenes/entities/player/gui/constructions/root/constructionsGUI.tscn")
 const resourcesGUIScene = preload("res://scenes/entities/player/gui/resources/root/resourcesGUI.tscn")
+var constructionsGUIs: Array[ConstructionsGUI]
 var resourcesGUIs: Array[ResourcesGUI]
-var yGUI: int
-var xGUI: int
+var xResourceGUI: int
+var yResourceGUI: int
+var xConstructionGUI: int
+var yConstructionGUI: int
 
 const wood = preload("res://resources/items/resources/wood/root/woodStats.tres")
 const refinedWood = preload("res://resources/items/resources/wood/refinedWood/root/refinedWoodStats.tres")
@@ -71,6 +75,22 @@ func update_resources(item: ItemStats, amount: int, currentOperation: int):
 	for resourceGUI in resourcesGUIs:
 		if resourceGUI.value == item.type:
 			resourceGUI.update_values()
+	
+	var _currentConstruction := 0
+	
+	for construction in ConstructionManager.constructions:
+		var requirementsMet := true
+		var alreadyCreated := false
+		for requirement in ConstructionManager.constructionsStats[_currentConstruction].requirementNumber:
+			if !PlayerManager.check_resources(requirement):
+				requirementsMet = false
+		if requirementsMet:
+			for constructionGUI in PlayerManager.constructionsGUIs:
+				if constructionGUI.construction == ConstructionManager.constructionsStats[_currentConstruction]:
+					alreadyCreated = true
+			if !alreadyCreated:
+				create_construction_GUI(ConstructionManager.constructionsStats[_currentConstruction])
+		_currentConstruction += 1
 
 func check_resources(item: ItemStats) -> bool:
 	var returnValue := false
@@ -85,6 +105,13 @@ func create_resource_GUI(resource: ItemStats) -> void:
 	resourcesGUIs.append(resourceGUI)
 	sort_GUI()
 
+func create_construction_GUI(construction: ConstructionObjectsStats) -> void:
+	var constructionGUI = constructionsGUIScene.instantiate() as ConstructionsGUI
+	constructionGUI.construction = construction
+	get_player().get_node("gui").add_child(constructionGUI)
+	constructionsGUIs.append(constructionGUI)
+	sort_GUI()
+
 func destroy_resource_GUI(resource: ItemStats) -> void:
 	for resourcesGUI in resourcesGUIs:
 		if resourcesGUI.value == resource.type:
@@ -93,15 +120,24 @@ func destroy_resource_GUI(resource: ItemStats) -> void:
 	sort_GUI()
 
 func sort_GUI() -> void:
-	xGUI = 50
-	yGUI = 500
+	xResourceGUI = 50
+	yResourceGUI = 500
+	xConstructionGUI = 50
+	yConstructionGUI = 200
 	for resourcesGUI in resourcesGUIs:
-		resourcesGUI.position.y = yGUI
-		resourcesGUI.position.x = xGUI
-		xGUI += 50
-		if xGUI > 200:
-			xGUI = 50
-			yGUI += 50
+		resourcesGUI.position.x = xResourceGUI
+		resourcesGUI.position.y = yResourceGUI
+		xResourceGUI += 50
+		if xResourceGUI > 200:
+			xResourceGUI = 50
+			yResourceGUI += 50
+	for constructionsGUI in constructionsGUIs:
+		constructionsGUI.position.x = xConstructionGUI
+		constructionsGUI.position.y = yConstructionGUI
+		xConstructionGUI += 50
+		if xConstructionGUI > 200:
+			xConstructionGUI = 50
+			yConstructionGUI += 50
 
 func get_player() -> CharacterBody2D:
 	return get_tree().get_first_node_in_group("player")
