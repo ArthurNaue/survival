@@ -95,11 +95,6 @@ func check_requirements() -> bool:
 	return requirementsMet
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("TAB"):
-		_unable_to_build()
-	elif Input.is_action_just_released("TAB"):
-		_able_to_build()
-	
 	if Input.is_action_just_pressed("M1") and buildMode:
 		if check_requirements():
 			if !colided:

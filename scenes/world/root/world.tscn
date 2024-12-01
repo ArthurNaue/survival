@@ -44,6 +44,7 @@ offset_left = -1648.0
 offset_top = -51.0
 offset_right = -496.0
 offset_bottom = 597.0
+scale = Vector2(0.998515, 1)
 pivot_offset = Vector2(576, 324)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -55,7 +56,6 @@ wait_time = 0.1
 autostart = true
 
 [node name="campfire" parent="." instance=ExtResource("3_4y18a")]
-modulate = Color(1, 0, 1, 1)
 position = Vector2(482, 469)
 
 [node name="player" parent="." instance=ExtResource("1_orl44")]
