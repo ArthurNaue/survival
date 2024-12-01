@@ -32,6 +32,8 @@ var object: ConstructionObjectsStats
 var warningTextExists := false
 
 func _ready() -> void:
+	constructionObjectColision.area_entered.connect(_unable_to_build)
+	constructionObjectColision.area_exited.connect(_able_to_build)
 	add_child(constructionSprite)
 	add_child(tutorialText)
 	add_child(constructionObjectColision)
@@ -67,8 +69,6 @@ R / ROTATE"
 	tutorialText.size = Vector2(150, 50)
 	tutorialText.scale = Vector2(0.25, 0.25)
 	constructionObjectColision.set_collision_mask_value(3, true)
-	constructionObjectColision.area_entered.connect(_unable_to_build)
-	constructionObjectColision.area_exited.connect(_able_to_build)
 	constructionObjectShapeColision.shape = RectangleShape2D.new()
 	constructionObjectShapeColision.shape.size = Vector2(32, 32)
 	constructionSprite.texture = object.sprite
