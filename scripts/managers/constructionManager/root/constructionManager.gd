@@ -69,6 +69,7 @@ R / ROTATE"
 	tutorialText.size = Vector2(150, 50)
 	tutorialText.scale = Vector2(0.25, 0.25)
 	constructionObjectColision.set_collision_mask_value(3, true)
+	constructionObjectColision.set_collision_mask_value(5, true)
 	constructionObjectShapeColision.shape = RectangleShape2D.new()
 	constructionObjectShapeColision.shape.size = Vector2(32, 32)
 	constructionSprite.texture = object.sprite
