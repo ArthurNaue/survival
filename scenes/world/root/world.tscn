@@ -31,10 +31,11 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_hbgas")
 
-[node name="world" type="Node2D" node_paths=PackedStringArray("resourceObjects", "constructionObjects", "forceColorPalleteShader") groups=["world"]]
+[node name="world" type="Node2D" node_paths=PackedStringArray("resourceObjects", "constructionObjects", "entities", "forceColorPalleteShader") groups=["world"]]
 script = ExtResource("1_w3wjl")
 resourceObjects = NodePath("resourceObjects")
 constructionObjects = NodePath("constructionObjects")
+entities = NodePath("entities")
 forceColorPalleteShader = NodePath("forceColorPalleteShader")
 
 [node name="forceColorPalleteShader" type="ColorRect" parent="."]
@@ -58,13 +59,15 @@ autostart = true
 [node name="campfire" parent="." instance=ExtResource("3_4y18a")]
 position = Vector2(482, 469)
 
-[node name="player" parent="." instance=ExtResource("1_orl44")]
-position = Vector2(416, 494)
-
 [node name="resourceObjects" type="Node2D" parent="."]
 
 [node name="constructionObjects" type="Node2D" parent="."]
 
 [node name="sounds" type="Node2D" parent="."]
+
+[node name="entities" type="Node2D" parent="."]
+
+[node name="player" parent="entities" instance=ExtResource("1_orl44")]
+position = Vector2(416, 494)
 
 [connection signal="timeout" from="spawnResourceObjectTimer" to="." method="_on_spawn_resource_object_timer_timeout"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://bmesjnfq0gdtk"]
+
+[ext_resource type="Script" path="res://scripts/entities/player/gui/constructions/requirements/root/constructionRequirements.gd" id="1_0i11k"]
+
+[node name="constructionRequirements" type="Node2D" node_paths=PackedStringArray("colorRect1", "colorRect2")]
+z_index = 2
+script = ExtResource("1_0i11k")
+colorRect1 = NodePath("colorRect1")
+colorRect2 = NodePath("colorRect2")
+
+[node name="colorRect1" type="ColorRect" parent="."]
+anchors_preset = -1
+offset_right = 100.0
+offset_bottom = 10.0
+color = Color(0.941176, 0.964706, 0.941176, 1)
+
+[node name="colorRect2" type="ColorRect" parent="."]
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 99.0
+offset_bottom = 9.0
+color = Color(0.133333, 0.137255, 0.137255, 1)

@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://gubpa1q525dm"]
+[gd_scene load_steps=3 format=3 uid="uid://gubpa1q525dm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player/gui/constructions/root/constructionsGUI.gd" id="1_mlbfg"]
+[ext_resource type="PackedScene" uid="uid://bmesjnfq0gdtk" path="res://scenes/entities/player/gui/constructions/requirements/root/constructionRequirements.tscn" id="2_gcjkl"]
 
 [node name="constructionsGui" type="Node2D" node_paths=PackedStringArray("sprite", "buildButton")]
 script = ExtResource("1_mlbfg")
+constructionRequirementsScene = ExtResource("2_gcjkl")
 sprite = NodePath("sprite")
 buildButton = NodePath("buildButton")
 
@@ -12,10 +14,12 @@ buildButton = NodePath("buildButton")
 [node name="buildButton" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 1, 0)
-offset_left = -16.0
-offset_top = -16.0
-offset_right = 16.0
-offset_bottom = 16.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 flat = true
 
+[connection signal="mouse_entered" from="buildButton" to="." method="_on_build_button_mouse_entered"]
+[connection signal="mouse_exited" from="buildButton" to="." method="_on_build_button_mouse_exited"]
 [connection signal="pressed" from="buildButton" to="." method="_on_build_button_pressed"]

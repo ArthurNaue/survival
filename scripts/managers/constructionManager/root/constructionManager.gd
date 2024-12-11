@@ -119,6 +119,7 @@ func _unable_to_build(_area: Area2D = null) -> void:
 	colided = true
 
 func warning_text(text: String) -> void:
+	CameraManager.apply_shake(0.25)
 	play_error_sound()
 	if !warningTextExists:
 		var warningText = RichTextLabel.new()

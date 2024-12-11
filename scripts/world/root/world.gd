@@ -2,6 +2,7 @@ extends Node2D
 
 @export var resourceObjects: Node2D
 @export var constructionObjects: Node2D
+@export var entities: Node2D
 @export var forceColorPalleteShader: ColorRect
 
 func _process(_delta: float) -> void:
