@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://t51b3ms8d6y2"]
+
+[ext_resource type="Script" path="res://scripts/entities/enemies/enemiesClass/root/enemiesClass.gd" id="1_sa045"]
+[ext_resource type="Texture2D" uid="uid://tihkqr86u2i" path="res://assets/images/entities/enemies/triangle/root/triangleEnemy.png" id="2_k8jv3"]
+[ext_resource type="Script" path="res://scripts/components/navAgentComponent/root/navAgentComponent.gd" id="3_wkmgt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_221fg"]
+size = Vector2(16, 16)
+
+[sub_resource type="Animation" id="Animation_4ot5w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_drm8c"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.349066, 0.0, -0.349066, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_64kre"]
+_data = {
+"RESET": SubResource("Animation_4ot5w"),
+"walk": SubResource("Animation_drm8c")
+}
+
+[node name="enemyModel" type="CharacterBody2D" node_paths=PackedStringArray("navAgent")]
+collision_layer = 8
+collision_mask = 31
+script = ExtResource("1_sa045")
+navAgent = NodePath("navAgentComponent")
+
+[node name="sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_k8jv3")
+
+[node name="col" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_221fg")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_64kre")
+}
+autoplay = "walk"
+
+[node name="navAgentComponent" type="NavigationAgent2D" parent="." node_paths=PackedStringArray("parent")]
+script = ExtResource("3_wkmgt")
+parent = NodePath("..")
