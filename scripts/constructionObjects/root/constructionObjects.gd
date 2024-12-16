@@ -56,6 +56,7 @@ func _on_enemy_hitbox_area_exited(_area: Area2D) -> void:
 func _on_turret_cooldown_timeout() -> void:
 	animation.play("shoot")
 	GameManager.play_sound(shootSound, global_position)
+	CameraManager.apply_shake(1)
 	target.get_node("entitiesHealthComponent").damage(stats.damage)
 
 func _input(_event: InputEvent) -> void:

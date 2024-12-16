@@ -15,5 +15,8 @@ func damage(amount: int) -> void:
 	health -= amount
 	if healthBarComponent:
 		healthBarComponent.UpdateBar.emit(health)
+		healthBarComponent.visible = true
+		await get_tree().create_timer(0.5).timeout
+		healthBarComponent.visible = false
 	if health <= 0:
 		owner.queue_free()

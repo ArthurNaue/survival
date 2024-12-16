@@ -61,11 +61,12 @@ border_color = Color(0.941176, 0.964706, 0.941176, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqqha"]
 bg_color = Color(0.941176, 0.964706, 0.941176, 1)
 
-[node name="enemyModel" type="CharacterBody2D" node_paths=PackedStringArray("healthComponent", "navAgent", "damageButton") groups=["enemies"]]
+[node name="enemyModel" type="CharacterBody2D" node_paths=PackedStringArray("healthComponent", "healthBar", "navAgent", "damageButton") groups=["enemies"]]
 collision_layer = 8
 collision_mask = 31
 script = ExtResource("1_sa045")
 healthComponent = NodePath("entitiesHealthComponent")
+healthBar = NodePath("healthBarComponent")
 navAgent = NodePath("navAgentComponent")
 damageButton = NodePath("damageButton")
 
