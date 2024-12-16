@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ConstructionObjectsStats" load_steps=6 format=3 uid="uid://bd2rt1qm0byo"]
+
+[ext_resource type="Script" path="res://scripts/items/stats/root/itemsStats.gd" id="1_sncbr"]
+[ext_resource type="Resource" uid="uid://bpgpe5wl8r21o" path="res://resources/items/resources/iron/root/ironStats.tres" id="2_bfhos"]
+[ext_resource type="Script" path="res://scripts/constructionObjects/stats/root/constructionObjectsStats.gd" id="2_v14j6"]
+[ext_resource type="Resource" uid="uid://culp2w8jt50ux" path="res://resources/items/resources/wood/refinedWood/root/refinedWoodStats.tres" id="3_io8fu"]
+[ext_resource type="Texture2D" uid="uid://ooflgmiechah" path="res://assets/images/constructions/testTurret/root/testTurret.png" id="5_iwdlh"]
+
+[resource]
+script = ExtResource("2_v14j6")
+constructionType = 2
+requirementNumber = Array[ExtResource("1_sncbr")]([ExtResource("3_io8fu"), ExtResource("2_bfhos")])
+ingredientsNumber = Array[ExtResource("1_sncbr")]([])
+damage = 1
+cooldown = 1
+sprite = ExtResource("5_iwdlh")

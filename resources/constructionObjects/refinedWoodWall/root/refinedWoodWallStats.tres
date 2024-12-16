@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/items/stats/root/itemsStats.gd" id="1_qh1pk"]
 [ext_resource type="Script" path="res://scripts/constructionObjects/stats/root/constructionObjectsStats.gd" id="2_1ycno"]
-[ext_resource type="Texture2D" uid="uid://do1x18g15gwvu" path="res://assets/images/constructions/wallConstructions/refinedWoodWall/root/refinedWoodWall.png" id="2_8b44v"]
+[ext_resource type="Texture2D" uid="uid://bi7hkr6a1l276" path="res://assets/images/constructions/wallConstructions/refinedWoodWall/root/refinedWoodWall.png" id="2_8b44v"]
 [ext_resource type="Resource" uid="uid://culp2w8jt50ux" path="res://resources/items/resources/wood/refinedWood/root/refinedWoodStats.tres" id="2_f8sv1"]
 
 [resource]

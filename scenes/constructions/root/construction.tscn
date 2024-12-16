@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://c407t8daykb32"]
+[gd_scene load_steps=10 format=3 uid="uid://c407t8daykb32"]
 
 [ext_resource type="Script" path="res://scripts/constructionObjects/root/constructionObjects.gd" id="1_8pj86"]
 [ext_resource type="Script" path="res://scripts/components/interactText/root/interactTextComponent.gd" id="2_7pg6d"]
-[ext_resource type="AudioStream" uid="uid://kfondc3o5xei" path="res://assets/audio/constructionObjects/craftingStations/root/craftingStation.wav" id="3_bdvhi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ub67g"]
 size = Vector2(128.956, 495.78)
@@ -21,18 +20,6 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("craftingStationAudio:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_wbnoc"]
 resource_name = "use"
@@ -49,33 +36,43 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.5, 1.5), Vector2(1, 1)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("craftingStationAudio:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
+
+[sub_resource type="Animation" id="Animation_4oweu"]
+resource_name = "shoot"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 0.5), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6cc28"]
 _data = {
 "RESET": SubResource("Animation_2xl4v"),
+"shoot": SubResource("Animation_4oweu"),
 "use": SubResource("Animation_wbnoc")
 }
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wi1mq"]
+radius = 150.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gj5r5"]
 size = Vector2(42, 43)
 
-[node name="construction" type="StaticBody2D" node_paths=PackedStringArray("sprite")]
+[node name="construction" type="StaticBody2D" node_paths=PackedStringArray("sprite", "turretCooldownTimer")]
 collision_layer = 4
 collision_mask = 31
 script = ExtResource("1_8pj86")
 sprite = NodePath("sprite")
+turretCooldownTimer = NodePath("turretCooldown")
 
 [node name="col" type="CollisionShape2D" parent="."]
 position = Vector2(1.43051e-06, 0.500002)
@@ -90,6 +87,13 @@ libraries = {
 "": SubResource("AnimationLibrary_6cc28")
 }
 
+[node name="enemyHitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 24
+
+[node name="col" type="CollisionShape2D" parent="enemyHitbox"]
+shape = SubResource("CircleShape2D_wi1mq")
+
 [node name="hitbox" type="Area2D" parent="." groups=["constructions"]]
 collision_layer = 4
 collision_mask = 16
@@ -103,8 +107,10 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_7pg6d")
 
-[node name="craftingStationAudio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_bdvhi")
+[node name="turretCooldown" type="Timer" parent="."]
 
+[connection signal="area_entered" from="enemyHitbox" to="." method="_on_enemy_hitbox_area_entered"]
+[connection signal="area_exited" from="enemyHitbox" to="." method="_on_enemy_hitbox_area_exited"]
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]
+[connection signal="timeout" from="turretCooldown" to="." method="_on_turret_cooldown_timeout"]

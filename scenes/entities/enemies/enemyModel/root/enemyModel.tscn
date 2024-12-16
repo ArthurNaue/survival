@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://t51b3ms8d6y2"]
+[gd_scene load_steps=13 format=3 uid="uid://t51b3ms8d6y2"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemies/enemiesClass/root/enemiesClass.gd" id="1_sa045"]
 [ext_resource type="Texture2D" uid="uid://tihkqr86u2i" path="res://assets/images/entities/enemies/triangle/root/triangleEnemy.png" id="2_k8jv3"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://scripts/components/healthBar/root/healthBarComponent.gd" id="5_gre0v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_221fg"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_05auj"]
 size = Vector2(16, 16)
 
 [sub_resource type="Animation" id="Animation_4ot5w"]
@@ -58,7 +61,7 @@ border_color = Color(0.941176, 0.964706, 0.941176, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqqha"]
 bg_color = Color(0.941176, 0.964706, 0.941176, 1)
 
-[node name="enemyModel" type="CharacterBody2D" node_paths=PackedStringArray("healthComponent", "navAgent", "damageButton")]
+[node name="enemyModel" type="CharacterBody2D" node_paths=PackedStringArray("healthComponent", "navAgent", "damageButton") groups=["enemies"]]
 collision_layer = 8
 collision_mask = 31
 script = ExtResource("1_sa045")
@@ -71,6 +74,13 @@ texture = ExtResource("2_k8jv3")
 
 [node name="col" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_221fg")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 20
+
+[node name="col" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_05auj")
 
 [node name="anim" type="AnimationPlayer" parent="."]
 libraries = {

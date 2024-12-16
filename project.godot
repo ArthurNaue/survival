@@ -29,6 +29,7 @@ world=""
 player=""
 item=""
 constructions=""
+enemies=""
 
 [input]
 

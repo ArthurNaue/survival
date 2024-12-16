@@ -6,19 +6,22 @@ const constructionErrorSound = preload("res://assets/audio/constructionObjects/c
 
 enum constructionTypes {
 	craftingStation,
-	wall
+	wall,
+	turret
 }
 
 enum constructions {
 	furnance,
 	craftingStation,
-	refinedWoodWall
+	refinedWoodWall,
+	testTurret
 }
 
 var constructionsStats := {
 	constructions.furnance: load("res://resources/constructionObjects/furnance/root/furnanceStats.tres"),
 	constructions.craftingStation: load("res://resources/constructionObjects/craftingStation/root/craftingStationStats.tres"),
-	constructions.refinedWoodWall: load("res://resources/constructionObjects/refinedWoodWall/root/refinedWoodWallStats.tres")
+	constructions.refinedWoodWall: load("res://resources/constructionObjects/refinedWoodWall/root/refinedWoodWallStats.tres"),
+	constructions.testTurret: load("res://resources/constructionObjects/testTurret/root/testTurretStats.tres")
 }
 
 var buildMode := false
