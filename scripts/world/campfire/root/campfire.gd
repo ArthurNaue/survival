@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+@export var animation: AnimationPlayer
+
 @onready var interactTextComponent = $interactTextComponent
 @onready var interactText = $interactText
 
@@ -20,6 +22,12 @@ func _input(_event: InputEvent) -> void:
 		interactable = false
 		await get_tree().create_timer(3).timeout
 		interactText.visible = false
+
+func turn_lights_on() -> void:
+	animation.play("anim")
+
+func turn_lights_off() -> void:
+	animation.stop()
 
 func _on_hitbox_area_entered(_area: Area2D) -> void:
 	if !interactable and !interactText.visible:

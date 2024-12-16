@@ -36,12 +36,18 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_hbgas")
 
-[node name="world" type="Node2D" node_paths=PackedStringArray("resourceObjects", "constructionObjects", "entities", "forceColorPalleteShader") groups=["world"]]
+[node name="world" type="Node2D" node_paths=PackedStringArray("campfire", "resourceObjects", "resourceObjectsTimer", "constructionObjects", "entities", "forceColorPalleteShader") groups=["world"]]
 script = ExtResource("1_w3wjl")
+campfire = NodePath("navRegion/campfire")
 resourceObjects = NodePath("navRegion/resourceObjects")
+resourceObjectsTimer = NodePath("navRegion/resourceObjects/spawnResourceObjectTimer")
 constructionObjects = NodePath("navRegion/constructionObjects")
 entities = NodePath("navRegion/entities")
 forceColorPalleteShader = NodePath("forceColorPalleteShader")
+
+[node name="dayCicleTimer" type="Timer" parent="."]
+wait_time = 120.0
+autostart = true
 
 [node name="forceColorPalleteShader" type="ColorRect" parent="."]
 top_level = true
@@ -67,7 +73,6 @@ position = Vector2(482, 469)
 
 [node name="spawnResourceObjectTimer" type="Timer" parent="navRegion/resourceObjects"]
 wait_time = 0.1
-autostart = true
 
 [node name="constructionObjects" type="Node2D" parent="navRegion"]
 
@@ -78,4 +83,5 @@ position = Vector2(416, 494)
 
 [node name="sounds" type="Node2D" parent="."]
 
+[connection signal="timeout" from="dayCicleTimer" to="." method="_on_day_cicle_timer_timeout"]
 [connection signal="timeout" from="navRegion/resourceObjects/spawnResourceObjectTimer" to="." method="_on_spawn_resource_object_timer_timeout"]
