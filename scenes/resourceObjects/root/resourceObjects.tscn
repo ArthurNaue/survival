@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/resourceObjects/root/resourceObjects.gd" id="1_6xegt"]
 [ext_resource type="Resource" uid="uid://bkqm4fp34ty5s" path="res://resources/resourceObjects/rock/root/rockStats.tres" id="2_6mld6"]
 [ext_resource type="Script" path="res://scripts/components/damageButton/root/damageButtonComponent.gd" id="2_nv7lx"]
-[ext_resource type="Script" path="res://scripts/components/health/root/healthComponent.gd" id="3_rlpai"]
+[ext_resource type="Script" path="res://scripts/components/health/resourcesHealth/root/healthComponent.gd" id="3_rlpai"]
 [ext_resource type="Script" path="res://scripts/components/healthBar/root/healthBarComponent.gd" id="4_4lhsr"]
 [ext_resource type="AudioStream" uid="uid://vsearg8mjcqj" path="res://assets/audio/resourceObjects/hitAudio/root/resourceObjectHitSound.wav" id="6_sl06j"]
 

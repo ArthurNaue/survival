@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://t51b3ms8d6y2"]
+[gd_scene load_steps=12 format=3 uid="uid://t51b3ms8d6y2"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemies/enemiesClass/root/enemiesClass.gd" id="1_sa045"]
 [ext_resource type="Texture2D" uid="uid://tihkqr86u2i" path="res://assets/images/entities/enemies/triangle/root/triangleEnemy.png" id="2_k8jv3"]
 [ext_resource type="Script" path="res://scripts/components/navAgentComponent/root/navAgentComponent.gd" id="3_wkmgt"]
+[ext_resource type="Script" path="res://scripts/components/health/entitiesHealth/root/entitiesHealthComponent.gd" id="4_0lcnb"]
+[ext_resource type="Script" path="res://scripts/components/healthBar/root/healthBarComponent.gd" id="5_gre0v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_221fg"]
 size = Vector2(16, 16)
@@ -45,11 +47,24 @@ _data = {
 "walk": SubResource("Animation_drm8c")
 }
 
-[node name="enemyModel" type="CharacterBody2D" node_paths=PackedStringArray("navAgent")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7leq3"]
+bg_color = Color(0.133333, 0.137255, 0.137255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.941176, 0.964706, 0.941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqqha"]
+bg_color = Color(0.941176, 0.964706, 0.941176, 1)
+
+[node name="enemyModel" type="CharacterBody2D" node_paths=PackedStringArray("healthComponent", "navAgent", "damageButton")]
 collision_layer = 8
 collision_mask = 31
 script = ExtResource("1_sa045")
+healthComponent = NodePath("entitiesHealthComponent")
 navAgent = NodePath("navAgentComponent")
+damageButton = NodePath("damageButton")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_k8jv3")
@@ -66,3 +81,30 @@ autoplay = "walk"
 [node name="navAgentComponent" type="NavigationAgent2D" parent="." node_paths=PackedStringArray("parent")]
 script = ExtResource("3_wkmgt")
 parent = NodePath("..")
+
+[node name="entitiesHealthComponent" type="Node2D" parent="." node_paths=PackedStringArray("healthBarComponent")]
+script = ExtResource("4_0lcnb")
+healthBarComponent = NodePath("../healthBarComponent")
+maxHealth = 5
+
+[node name="damageButton" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 15.0
+offset_bottom = 14.0
+flat = true
+
+[node name="healthBarComponent" type="ProgressBar" parent="."]
+offset_left = -14.0
+offset_top = 11.0
+offset_right = 44.0
+offset_bottom = 17.0
+scale = Vector2(0.5, 0.5)
+theme_override_styles/background = SubResource("StyleBoxFlat_7leq3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kqqha")
+max_value = 10.0
+value = 2.0
+show_percentage = false
+script = ExtResource("5_gre0v")
