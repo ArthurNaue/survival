@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cuqhbkv4j2b1s"]
+[gd_scene load_steps=11 format=4 uid="uid://cuqhbkv4j2b1s"]
 
 [ext_resource type="PackedScene" uid="uid://brqvbt8euur7w" path="res://scenes/entities/player/root/player.tscn" id="1_orl44"]
 [ext_resource type="Script" path="res://scripts/world/root/world.gd" id="1_w3wjl"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cy2kk2fomrxuf" path="res://assets/images/tilemap/root/forest.png" id="3_2353t"]
 [ext_resource type="Shader" path="res://assets/shaders/adaptColorPallete/root/adaptColorPalleteShader.gdshader" id="5_0qmt5"]
 [ext_resource type="Texture2D" uid="uid://df6jn1bi6bye" path="res://assets/images/pallete/root/gameColorPallete.png" id="6_qahwo"]
-[ext_resource type="PackedScene" uid="uid://t51b3ms8d6y2" path="res://scenes/entities/enemies/enemyModel/root/enemyModel.tscn" id="7_inyrw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ad4y0"]
 shader = ExtResource("5_0qmt5")
@@ -76,9 +75,6 @@ autostart = true
 
 [node name="player" parent="navRegion/entities" instance=ExtResource("1_orl44")]
 position = Vector2(416, 494)
-
-[node name="enemyModel" parent="navRegion/entities" instance=ExtResource("7_inyrw")]
-position = Vector2(302, 457)
 
 [node name="sounds" type="Node2D" parent="."]
 

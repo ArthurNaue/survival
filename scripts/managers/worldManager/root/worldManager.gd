@@ -47,6 +47,11 @@ func spawn_particle(particleScene: PackedScene, desiredPosition: Vector2) -> voi
 	get_world().add_child(particle)
 	particle.emitting = true
 
+func spawn_enemy(enemyScene: PackedScene, desiredPosition: Vector2) -> void:
+	var enemy = enemyScene.instantiate() as EnemiesClass
+	enemy.global_position = desiredPosition
+	get_world().add_child(enemy)
+
 func get_nav_region() -> NavigationRegion2D:
 	return get_world().get_node("navRegion")
 

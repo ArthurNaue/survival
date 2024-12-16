@@ -3,7 +3,7 @@ class_name NavAgentComponent
 
 #variaveis onready
 @export var parent: CharacterBody2D
-@onready var player = PlayerManager.get_player()
+@onready var campfire = WorldManager.get_world().get_node("navRegion").get_node("campfire")
 
 #variaveis
 var cooldown := 0.5
@@ -23,8 +23,8 @@ func bake_region() -> void:
 #funcao de definir o caminho
 func make_path() -> void:
 	bake_region()
-	if player != null:
+	if campfire != null:
 		#define a posicao do player
-		target_position = player.global_position
+		target_position = campfire.global_position
 	#reinicia o cooldown
 	cooldown = 0.5
