@@ -17,12 +17,8 @@ func _physics_process(_delta: float) -> void:
 		#define o caminho
 		make_path()
 
-func bake_region() -> void:
-	WorldManager.get_nav_region().bake_navigation_polygon()
-
 #funcao de definir o caminho
 func make_path() -> void:
-	bake_region()
 	if campfire != null:
 		#define a posicao do player
 		target_position = campfire.global_position

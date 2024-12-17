@@ -7,5 +7,5 @@ const breakParticleScene = preload("res://assets/particles/breakParticle/scene/r
 
 func _on_pressed() -> void:
 	if healthComponent and ConstructionManager.buildMode == false:
-		WorldManager.spawn_particle(breakParticleScene, get_global_mouse_position())
+		GameManager.spawn_particle(breakParticleScene, get_global_mouse_position())
 		healthComponent.damage(1)

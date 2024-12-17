@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c7f7pdu5yhieg"]
 
-[ext_resource type="Script" path="res://assets/particles/breakParticle/script/root/break_particle.gd" id="1_22gdn"]
+[ext_resource type="Script" path="res://assets/particles/script/root/particlesScript.gd" id="1_22gdn"]
 
 [node name="breakParticle" type="CPUParticles2D"]
 emitting = false
@@ -17,5 +17,3 @@ initial_velocity_max = 64.0
 scale_amount_min = 2.0
 scale_amount_max = 2.0
 script = ExtResource("1_22gdn")
-
-[connection signal="finished" from="." to="." method="_on_finished"]

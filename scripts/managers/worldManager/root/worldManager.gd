@@ -41,12 +41,6 @@ func spawn_resource_object() -> void:
 		get_world().resourceObjects.add_child(resource)
 		resource.global_position = location
 
-func spawn_particle(particleScene: PackedScene, desiredPosition: Vector2) -> void:
-	var particle = particleScene.instantiate() as CPUParticles2D
-	particle.global_position = desiredPosition
-	get_world().add_child(particle)
-	particle.emitting = true
-
 func spawn_enemy(enemyScene: PackedScene, desiredPosition: Vector2) -> void:
 	var enemy = enemyScene.instantiate() as EnemiesClass
 	enemy.global_position = desiredPosition

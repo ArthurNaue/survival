@@ -1,6 +1,9 @@
 extends Node2D
 class_name EntitiesHealthComponent
 
+const damageParticle := preload("res://assets/particles/damageParticle/scene/root/damageParticle.tscn")
+
+@export var animation: AnimationPlayer
 @export var healthBarComponent: HealthBarComponent
 
 @export_range(1, 100) var maxHealth: int
@@ -13,6 +16,8 @@ func _ready() -> void:
 
 func damage(amount: int) -> void:
 	health -= amount
+	animation.play("damage")
+	GameManager.spawn_particle(damageParticle, global_position)
 	if healthBarComponent:
 		healthBarComponent.UpdateBar.emit(health)
 		healthBarComponent.visible = true

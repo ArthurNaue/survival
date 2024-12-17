@@ -13,6 +13,7 @@ const shootSound = preload("res://assets/audio/constructionObjects/turrets/root/
 @export var sprite: Sprite2D
 @export var turretCooldownTimer: Timer
 
+var targets: Array
 var target: CharacterBody2D
 
 func _ready() -> void:
@@ -47,17 +48,32 @@ func _on_hitbox_area_exited(_area: Area2D) -> void:
 
 func _on_enemy_hitbox_area_entered(_area: Area2D) -> void:
 	if _area.owner.is_in_group("enemies") and stats.constructionType == ConstructionManager.constructionTypes.turret:
-		target = _area.owner
+		targets.append(_area.owner)
+		if !target:
+			target = _area.owner
 		turretCooldownTimer.start()
 
 func _on_enemy_hitbox_area_exited(_area: Area2D) -> void:
-	turretCooldownTimer.stop()
+	if _area.owner == target:
+		target = null
+	targets.erase(_area.owner)
+	if targets and !target:
+		target = targets.pick_random()
 
 func _on_turret_cooldown_timeout() -> void:
 	animation.play("shoot")
 	GameManager.play_sound(shootSound, global_position)
 	CameraManager.apply_shake(1)
-	target.get_node("entitiesHealthComponent").damage(stats.damage)
+	if (target.get_node("entitiesHealthComponent").health - stats.damage) <= 0:
+		targets.erase(target)
+		target.get_node("entitiesHealthComponent").damage(stats.damage)
+		target = null
+		if targets:
+			target = targets.pick_random()
+		else:
+			turretCooldownTimer.stop()
+	else:
+		target.get_node("entitiesHealthComponent").damage(stats.damage)
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("E") and interactText.visible == true:
