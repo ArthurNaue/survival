@@ -1,8 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://bf6dnfpckiet0"]
+[gd_scene load_steps=14 format=3 uid="uid://bf6dnfpckiet0"]
 
 [ext_resource type="Script" path="res://scripts/world/campfire/root/campfire.gd" id="1_gqt87"]
 [ext_resource type="Texture2D" uid="uid://bijdsaknb5tmk" path="res://assets/images/world/campfire/root/campfire.png" id="1_ltyrb"]
+[ext_resource type="Resource" uid="uid://qeae3fq5ncsv" path="res://resources/campfire/root/campfireStats.tres" id="2_746dp"]
 [ext_resource type="Script" path="res://scripts/components/interactText/root/interactTextComponent.gd" id="2_c5jdo"]
+[ext_resource type="Script" path="res://scripts/components/healthBar/root/healthBarComponent.gd" id="3_h0xbg"]
+[ext_resource type="Script" path="res://scripts/components/health/resourcesHealth/root/healthComponent.gd" id="4_7hs34"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7toxt"]
+bg_color = Color(0.133333, 0.137255, 0.137255, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.941176, 0.964706, 0.941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ugig2"]
+bg_color = Color(0.941176, 0.964706, 0.941176, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_528hi"]
 size = Vector2(57, 44)
@@ -39,16 +53,68 @@ tracks/0/keys = {
 "values": [Vector2(1, 1), Vector2(0.95, 1.05)]
 }
 
+[sub_resource type="Animation" id="Animation_v0h0a"]
+resource_name = "hit"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 1.5), Vector2(1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anim")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"anim"],
+"method": &"play"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2dfbk"]
 _data = {
 "RESET": SubResource("Animation_8jg8j"),
-"anim": SubResource("Animation_mdp01")
+"anim": SubResource("Animation_mdp01"),
+"hit": SubResource("Animation_v0h0a")
 }
 
-[node name="campfire" type="StaticBody2D" node_paths=PackedStringArray("animation")]
+[node name="campfire" type="StaticBody2D" node_paths=PackedStringArray("animation", "healthComponent", "healthBarComponent", "damageCooldownTimer")]
 collision_mask = 31
 script = ExtResource("1_gqt87")
 animation = NodePath("anim")
+stats = ExtResource("2_746dp")
+healthComponent = NodePath("healthComponent")
+healthBarComponent = NodePath("healthBarComponent")
+damageCooldownTimer = NodePath("damageCooldownTimer")
+
+[node name="healthComponent" type="Node2D" parent="." node_paths=PackedStringArray("healthBarComponent", "anim")]
+script = ExtResource("4_7hs34")
+healthBarComponent = NodePath("../healthBarComponent")
+anim = NodePath("../anim")
+
+[node name="healthBarComponent" type="ProgressBar" parent="."]
+offset_left = -50.0
+offset_top = 27.0
+offset_right = 50.0
+offset_bottom = 37.0
+theme_override_styles/background = SubResource("StyleBoxFlat_7toxt")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ugig2")
+value = 50.0
+show_percentage = false
+script = ExtResource("3_h0xbg")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_ltyrb")
@@ -73,7 +139,8 @@ bbcode_enabled = true
 text = "THIS REMINDS YOU OF HOME"
 
 [node name="hitbox" type="Area2D" parent="."]
-collision_mask = 16
+collision_layer = 4
+collision_mask = 8
 
 [node name="col" type="CollisionShape2D" parent="hitbox"]
 position = Vector2(0.5, 0)
@@ -84,5 +151,9 @@ libraries = {
 "": SubResource("AnimationLibrary_2dfbk")
 }
 
+[node name="damageCooldownTimer" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_exited" from="hitbox" to="." method="_on_hitbox_area_exited"]
+[connection signal="timeout" from="damageCooldownTimer" to="." method="_on_damage_cooldown_timer_timeout"]

@@ -83,6 +83,13 @@ wait_time = 0.1
 position = Vector2(416, 494)
 
 [node name="triangleEnemy" parent="navRegion/entities" instance=ExtResource("7_tioas")]
+position = Vector2(387, 406)
+
+[node name="triangleEnemy2" parent="navRegion/entities" instance=ExtResource("7_tioas")]
+position = Vector2(353, 529)
+
+[node name="triangleEnemy3" parent="navRegion/entities" instance=ExtResource("7_tioas")]
+position = Vector2(510, 392)
 
 [node name="sounds" type="Node2D" parent="."]
 
