@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://c1c1suq05yv3e"]
 
 [ext_resource type="Script" path="res://scripts/items/root/item.gd" id="1_6x1xf"]
-[ext_resource type="AudioStream" uid="uid://c2xsg8sofkjjg" path="res://assets/audio/player/itemPickup/root/itemPickupSound.wav" id="2_6v0vx"]
+[ext_resource type="AudioStream" uid="uid://c2xsg8sofkjjg" path="res://assets/audio/entities/player/itemPickup/root/itemPickupSound.wav" id="2_6v0vx"]
 [ext_resource type="Texture2D" uid="uid://lj7ms8ol78pw" path="res://assets/images/items/resources/wood/root/wood.png" id="2_advo2"]
-[ext_resource type="AudioStream" uid="uid://bgexp3bct5w67" path="res://assets/audio/player/itemDrop/root/itemDropSound.wav" id="3_els8o"]
+[ext_resource type="AudioStream" uid="uid://bgexp3bct5w67" path="res://assets/audio/entities/player/itemDrop/root/itemDropSound.wav" id="3_els8o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lctf7"]
 size = Vector2(16, 16)

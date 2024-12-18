@@ -3,6 +3,7 @@ class_name EntitiesHealthComponent
 
 const damageParticle := preload("res://assets/particles/damageParticle/scene/root/damageParticle.tscn")
 
+@export var damageSound: AudioStream
 @export var animation: AnimationPlayer
 @export var healthBarComponent: HealthBarComponent
 
@@ -16,7 +17,10 @@ func _ready() -> void:
 
 func damage(amount: int) -> void:
 	health -= amount
-	animation.play("damage")
+	if animation:
+		animation.play("damage")
+	if damageSound:
+		GameManager.play_sound(damageSound, global_position)
 	GameManager.spawn_particle(damageParticle, global_position)
 	if healthBarComponent:
 		healthBarComponent.UpdateBar.emit(health)

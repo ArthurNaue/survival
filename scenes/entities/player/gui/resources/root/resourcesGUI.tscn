@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c0vpev6irbhhm"]
 
 [ext_resource type="Script" path="res://scripts/entities/player/gui/resources/root/resourcesGUI.gd" id="1_0s2j4"]
-[ext_resource type="AudioStream" uid="uid://bgexp3bct5w67" path="res://assets/audio/player/itemDrop/root/itemDropSound.wav" id="2_ogwwf"]
+[ext_resource type="AudioStream" uid="uid://bgexp3bct5w67" path="res://assets/audio/entities/player/itemDrop/root/itemDropSound.wav" id="2_ogwwf"]
 
 [node name="resourcesGUI" type="Node2D" node_paths=PackedStringArray("sprite", "text")]
 script = ExtResource("1_0s2j4")
