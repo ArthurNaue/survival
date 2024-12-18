@@ -5,6 +5,7 @@ extends StaticBody2D
 @export var healthComponent: HealthComponent
 @export var healthBarComponent: HealthBarComponent
 @export var damageCooldownTimer: Timer
+@export var gameOverScreen: PackedScene
 
 @onready var interactTextComponent = $interactTextComponent
 @onready var interactText = $interactText
@@ -62,6 +63,8 @@ func _on_hitbox_area_exited(_area: Area2D) -> void:
 
 func verify_damage() -> void:
 	if enemies and damageCooldown == false:
+		if (healthComponent.health - 1) <= 0:
+			get_tree().change_scene_to_packed(gameOverScreen)
 		damageCooldown = true
 		damageCooldownTimer.start()
 		healthComponent.damage(1)

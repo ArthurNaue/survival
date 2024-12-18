@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://t51b3ms8d6y2"]
+[gd_scene load_steps=16 format=3 uid="uid://t51b3ms8d6y2"]
 
 [ext_resource type="Script" path="res://scripts/entities/enemies/enemiesClass/root/enemiesClass.gd" id="1_5un3r"]
 [ext_resource type="Texture2D" uid="uid://tihkqr86u2i" path="res://assets/images/entities/enemies/triangle/root/triangleEnemy.png" id="2_sj6t3"]
@@ -39,6 +39,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sprite:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_mtfu6"]
 resource_name = "damage"
@@ -71,6 +83,34 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_wt02r"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("sprite:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
 [sub_resource type="Animation" id="Animation_drm8c"]
 resource_name = "walk"
 length = 0.8
@@ -92,6 +132,7 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_4ot5w"),
 "damage": SubResource("Animation_mtfu6"),
+"idle": SubResource("Animation_wt02r"),
 "walk": SubResource("Animation_drm8c")
 }
 
@@ -106,7 +147,7 @@ border_color = Color(0.941176, 0.964706, 0.941176, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqqha"]
 bg_color = Color(0.941176, 0.964706, 0.941176, 1)
 
-[node name="triangleEnemy" type="CharacterBody2D" node_paths=PackedStringArray("healthComponent", "healthBar", "navAgent", "damageButton") groups=["enemies"]]
+[node name="triangleEnemy" type="CharacterBody2D" node_paths=PackedStringArray("healthComponent", "healthBar", "navAgent", "damageButton", "animation") groups=["enemies"]]
 collision_layer = 8
 collision_mask = 31
 script = ExtResource("1_5un3r")
@@ -114,6 +155,7 @@ healthComponent = NodePath("entitiesHealthComponent")
 healthBar = NodePath("healthBarComponent")
 navAgent = NodePath("navAgentComponent")
 damageButton = NodePath("damageButton")
+animation = NodePath("anim")
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_sj6t3")

@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bkdhiwakejlqv"]
+
+[node name="gameOverScreen" type="Node2D"]
+
+[node name="loseText" type="RichTextLabel" parent="."]
+offset_left = 548.0
+offset_top = 364.0
+offset_right = 644.0
+offset_bottom = 388.0
+text = "YOU LOST!"

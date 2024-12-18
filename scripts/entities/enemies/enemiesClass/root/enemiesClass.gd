@@ -5,6 +5,7 @@ class_name EnemiesClass
 @export var healthBar: HealthBarComponent
 @export var navAgent: NavAgentComponent
 @export var damageButton: Button
+@export var animation: AnimationPlayer
 
 func _ready() -> void:
 	damageButton.pressed.connect(healthComponent.damage.bind(1))
@@ -13,6 +14,11 @@ func _ready() -> void:
 		healthBar.visible = false
 
 func _physics_process(_delta: float) -> void:
-	velocity = to_local(navAgent.get_next_path_position()).normalized() * 100
+	if global_position.distance_to(WorldManager.get_world().get_node("navRegion").get_node("campfire").global_position) > 35:
+		velocity = to_local(navAgent.get_next_path_position()).normalized() * 100
+	else:
+		if animation:
+			animation.play("idle")
+		velocity = Vector2.ZERO
 	
 	move_and_slide()
