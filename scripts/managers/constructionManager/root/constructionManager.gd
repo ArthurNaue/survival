@@ -17,11 +17,11 @@ enum constructions {
 	testTurret
 }
 
-var constructionsStats := {
-	constructions.furnance: load("res://resources/constructionObjects/furnance/root/furnanceStats.tres"),
-	constructions.craftingStation: load("res://resources/constructionObjects/craftingStation/root/craftingStationStats.tres"),
-	constructions.refinedWoodWall: load("res://resources/constructionObjects/refinedWoodWall/root/refinedWoodWallStats.tres"),
-	constructions.testTurret: load("res://resources/constructionObjects/testTurret/root/testTurretStats.tres")
+const constructionsStats := {
+	constructions.furnance: preload("res://resources/constructionObjects/furnance/root/furnanceStats.tres"),
+	constructions.craftingStation: preload("res://resources/constructionObjects/craftingStation/root/craftingStationStats.tres"),
+	constructions.refinedWoodWall: preload("res://resources/constructionObjects/refinedWoodWall/root/refinedWoodWallStats.tres"),
+	constructions.testTurret: preload("res://resources/constructionObjects/testTurret/root/testTurretStats.tres")
 }
 
 var buildMode := false
@@ -43,6 +43,7 @@ func _ready() -> void:
 	constructionObjectColision.add_child(constructionObjectShapeColision)
 
 func _process(_delta: float) -> void:
+	print(colided)
 	if ConstructionManager.buildMode == true:
 		tutorialText.global_position = Vector2(get_global_mouse_position().x - 40, get_global_mouse_position().y)
 		constructionSprite.global_position = get_global_mouse_position()
@@ -76,10 +77,7 @@ R / ROTATE"
 	constructionObjectShapeColision.shape = RectangleShape2D.new()
 	constructionObjectShapeColision.shape.size = Vector2(32, 32)
 	constructionSprite.texture = object.sprite
-	if Input.is_action_pressed("TAB"):
-		_unable_to_build()
-	else:
-		_able_to_build()
+	_able_to_build()
 
 func turn_build_mode_off() -> void:
 	buildMode = false
