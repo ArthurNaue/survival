@@ -3,11 +3,16 @@ extends Node2D
 const itemDropScene = preload("res://scenes/items/root/item.tscn")
 const resourceObject = preload("res://scenes/resourceObjects/root/resourceObjects.tscn")
 
-var resourceObjects := [
-	load("res://resources/resourceObjects/tree/root/treeStats.tres"),
-	load("res://resources/resourceObjects/rock/root/rockStats.tres"),
-	load("res://resources/resourceObjects/ironRock/root/ironRockStats.tres"),
-	load("res://resources/resourceObjects/goldRock/root/goldRock.tres")
+const resourceObjects := [
+	preload("res://resources/resourceObjects/tree/root/treeStats.tres"),
+	preload("res://resources/resourceObjects/rock/root/rockStats.tres"),
+	preload("res://resources/resourceObjects/ironRock/root/ironRockStats.tres"),
+	preload("res://resources/resourceObjects/goldRock/root/goldRock.tres")
+]
+
+const enemies := [
+	preload("res://scenes/entities/enemies/rectangleEnemy/root/rectangleEnemy.tscn"),
+	preload("res://scenes/entities/enemies/triangleEnemy/root/triangleEnemy.tscn")
 ]
 
 var spawnedResourceObjects := 0
@@ -41,9 +46,12 @@ func spawn_resource_object() -> void:
 		get_world().resourceObjects.add_child(resource)
 		resource.global_position = location
 
-func spawn_enemy(enemyScene: PackedScene, desiredPosition: Vector2) -> void:
-	var enemy = enemyScene.instantiate() as EnemiesClass
-	enemy.global_position = desiredPosition
+func spawn_enemy() -> void:
+	var enemy = enemies.pick_random().instantiate() as EnemiesClass
+	var enemyPosition = Vector2(randi_range(0, 1000), randi_range(0, 1000))
+	while enemyPosition.distance_to(WorldManager.get_world().get_node("navRegion").get_node("campfire").global_position) < 200:
+		enemyPosition = Vector2(randi_range(0, 1000), randi_range(0, 1000))
+	enemy.global_position = enemyPosition
 	get_world().add_child(enemy)
 
 func get_nav_region() -> NavigationRegion2D:

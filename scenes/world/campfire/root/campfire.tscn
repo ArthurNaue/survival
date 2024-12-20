@@ -20,7 +20,7 @@ border_color = Color(0.941176, 0.964706, 0.941176, 1)
 bg_color = Color(0.941176, 0.964706, 0.941176, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_528hi"]
-size = Vector2(57, 44)
+size = Vector2(68, 61)
 
 [sub_resource type="Animation" id="Animation_8jg8j"]
 length = 0.001
@@ -69,20 +69,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(0.5, 1.5), Vector2(1, 1)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("anim")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [&"anim"],
-"method": &"play"
-}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2dfbk"]
@@ -142,10 +128,9 @@ text = "THIS REMINDS YOU OF HOME"
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 4
-collision_mask = 8
+collision_mask = 24
 
 [node name="col" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_528hi")
 
 [node name="anim" type="AnimationPlayer" parent="."]

@@ -28,8 +28,7 @@ func _on_day_cicle_timer_timeout() -> void:
 		
 		var enemiesNumber = randi_range(3, 6)
 		for enemies in enemiesNumber:
-			var enemyPosition = Vector2(randi_range(100, 600), randi_range(100, 600))
-			WorldManager.spawn_enemy(load("res://scenes/entities/enemies/triangleEnemy/root/triangleEnemy.tscn"), enemyPosition)
+			WorldManager.spawn_enemy()
 	else:
 		campfire.turn_lights_off()
 		resourceObjectsTimer.start()

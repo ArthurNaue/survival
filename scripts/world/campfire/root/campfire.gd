@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+const breakParticle := preload("res://assets/particles/breakParticle/scene/root/breakParticle.tscn")
+
 @export var animation: AnimationPlayer
 @export var stats: ResourceObjectsStats
 @export var healthComponent: HealthComponent
@@ -67,6 +69,7 @@ func verify_damage() -> void:
 			get_tree().change_scene_to_packed(gameOverScreen)
 		damageCooldown = true
 		damageCooldownTimer.start()
+		GameManager.spawn_particle(breakParticle, global_position)
 		healthComponent.damage(1)
 		healthBarComponent.visible = true
 		await get_tree().create_timer(0.5).timeout

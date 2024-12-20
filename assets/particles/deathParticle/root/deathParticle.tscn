@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bolsyq0xfi3lg"]
+
+[ext_resource type="Script" path="res://assets/particles/script/root/particlesScript.gd" id="1_7n005"]
+
+[sub_resource type="Curve" id="Curve_ylspg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="deathParticle" type="CPUParticles2D"]
+scale = Vector2(0.5, 0.5)
+emitting = false
+amount = 60
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_ylspg")
+script = ExtResource("1_7n005")

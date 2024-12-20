@@ -1,18 +1,18 @@
-[gd_scene load_steps=17 format=3 uid="uid://t51b3ms8d6y2"]
+[gd_scene load_steps=17 format=3 uid="uid://wd7b6f7y2qqb"]
 
-[ext_resource type="Script" path="res://scripts/entities/enemies/enemiesClass/root/enemiesClass.gd" id="1_5un3r"]
-[ext_resource type="Texture2D" uid="uid://tihkqr86u2i" path="res://assets/images/entities/enemies/triangle/root/triangleEnemy.png" id="2_sj6t3"]
-[ext_resource type="Resource" uid="uid://bvscahd1iv1is" path="res://resources/entities/enemies/triangle/root/triangleEnemyStats.tres" id="2_w4tw7"]
-[ext_resource type="Script" path="res://scripts/components/navAgentComponent/root/navAgentComponent.gd" id="3_wol36"]
-[ext_resource type="Script" path="res://scripts/components/health/entitiesHealth/root/entitiesHealthComponent.gd" id="4_q5fm3"]
-[ext_resource type="Script" path="res://scripts/components/healthBar/root/healthBarComponent.gd" id="5_8r15p"]
-[ext_resource type="AudioStream" uid="uid://dlspxxvgqqm01" path="res://assets/audio/entities/enemies/damage/root/enemyDamageSound.wav" id="5_hcj23"]
+[ext_resource type="Script" path="res://scripts/entities/enemies/enemiesClass/root/enemiesClass.gd" id="1_co8tw"]
+[ext_resource type="Texture2D" uid="uid://bqhdn7owvyt3x" path="res://assets/images/entities/enemies/rectangle/root/rectangleEnemy.png" id="2_f6hgn"]
+[ext_resource type="Resource" uid="uid://57yyxbdhfl2u" path="res://resources/entities/enemies/rectangle/root/rectangleEnemyStats.tres" id="2_yei71"]
+[ext_resource type="Script" path="res://scripts/components/navAgentComponent/root/navAgentComponent.gd" id="3_sunje"]
+[ext_resource type="Script" path="res://scripts/components/health/entitiesHealth/root/entitiesHealthComponent.gd" id="4_8gj8l"]
+[ext_resource type="AudioStream" uid="uid://dlspxxvgqqm01" path="res://assets/audio/entities/enemies/damage/root/enemyDamageSound.wav" id="5_e3k01"]
+[ext_resource type="Script" path="res://scripts/components/healthBar/root/healthBarComponent.gd" id="6_evrei"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_221fg"]
-size = Vector2(16, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfc8t"]
+size = Vector2(9, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_05auj"]
-size = Vector2(16, 16)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gk75f"]
+size = Vector2(9, 16)
 
 [sub_resource type="Animation" id="Animation_4ot5w"]
 length = 0.001
@@ -137,7 +137,7 @@ _data = {
 "walk": SubResource("Animation_drm8c")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7leq3"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btvbi"]
 bg_color = Color(0.133333, 0.137255, 0.137255, 1)
 border_width_left = 1
 border_width_top = 1
@@ -145,14 +145,12 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.941176, 0.964706, 0.941176, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kqqha"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s2m7o"]
 bg_color = Color(0.941176, 0.964706, 0.941176, 1)
 
-[node name="triangleEnemy" type="CharacterBody2D" node_paths=PackedStringArray("healthComponent", "healthBar", "navAgent", "damageButton", "animation") groups=["enemies"]]
-collision_layer = 8
-collision_mask = 31
-script = ExtResource("1_5un3r")
-stats = ExtResource("2_w4tw7")
+[node name="rectangleEnemy" type="CharacterBody2D" node_paths=PackedStringArray("healthComponent", "healthBar", "navAgent", "damageButton", "animation") groups=["enemies"]]
+script = ExtResource("1_co8tw")
+stats = ExtResource("2_yei71")
 healthComponent = NodePath("entitiesHealthComponent")
 healthBar = NodePath("healthBarComponent")
 navAgent = NodePath("navAgentComponent")
@@ -160,17 +158,19 @@ damageButton = NodePath("damageButton")
 animation = NodePath("anim")
 
 [node name="sprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_sj6t3")
+texture = ExtResource("2_f6hgn")
 
 [node name="col" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_221fg")
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_sfc8t")
 
 [node name="hitbox" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 20
 
 [node name="col" type="CollisionShape2D" parent="hitbox"]
-shape = SubResource("RectangleShape2D_05auj")
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_gk75f")
 
 [node name="anim" type="AnimationPlayer" parent="."]
 libraries = {
@@ -179,13 +179,13 @@ libraries = {
 autoplay = "walk"
 
 [node name="navAgentComponent" type="NavigationAgent2D" parent="." node_paths=PackedStringArray("parent")]
-script = ExtResource("3_wol36")
+script = ExtResource("3_sunje")
 parent = NodePath("..")
 
 [node name="entitiesHealthComponent" type="Node2D" parent="." node_paths=PackedStringArray("parent", "animation", "healthBarComponent")]
-script = ExtResource("4_q5fm3")
+script = ExtResource("4_8gj8l")
 parent = NodePath("..")
-damageSound = ExtResource("5_hcj23")
+damageSound = ExtResource("5_e3k01")
 animation = NodePath("../anim")
 healthBarComponent = NodePath("../healthBarComponent")
 
@@ -204,9 +204,9 @@ offset_top = 11.0
 offset_right = 44.0
 offset_bottom = 17.0
 scale = Vector2(0.5, 0.5)
-theme_override_styles/background = SubResource("StyleBoxFlat_7leq3")
-theme_override_styles/fill = SubResource("StyleBoxFlat_kqqha")
+theme_override_styles/background = SubResource("StyleBoxFlat_btvbi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_s2m7o")
 max_value = 10.0
 value = 2.0
 show_percentage = false
-script = ExtResource("5_8r15p")
+script = ExtResource("6_evrei")
