@@ -82,3 +82,7 @@ func _on_damage_cooldown_timer_timeout() -> void:
 	else:
 		damageCooldown = false
 		damageCooldownTimer.stop()
+
+func _on_anim_animation_finished(_anim: Animation) -> void:
+	if _anim == animation.get_animation("hit"):
+		animation.play("anim")

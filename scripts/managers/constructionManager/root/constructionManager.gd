@@ -43,7 +43,6 @@ func _ready() -> void:
 	constructionObjectColision.add_child(constructionObjectShapeColision)
 
 func _process(_delta: float) -> void:
-	print(colided)
 	if ConstructionManager.buildMode == true:
 		tutorialText.global_position = Vector2(get_global_mouse_position().x - 40, get_global_mouse_position().y)
 		constructionSprite.global_position = get_global_mouse_position()
