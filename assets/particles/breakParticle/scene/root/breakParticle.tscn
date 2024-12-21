@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7f7pdu5yhieg"]
+[gd_scene load_steps=3 format=3 uid="uid://c7f7pdu5yhieg"]
 
 [ext_resource type="Script" path="res://assets/particles/script/root/particlesScript.gd" id="1_22gdn"]
+
+[sub_resource type="Curve" id="Curve_onlil"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.56044), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="breakParticle" type="CPUParticles2D"]
 emitting = false
@@ -15,5 +19,6 @@ gravity = Vector2(0, 400)
 initial_velocity_min = 64.0
 initial_velocity_max = 64.0
 scale_amount_min = 2.0
-scale_amount_max = 2.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_onlil")
 script = ExtResource("1_22gdn")

@@ -17,6 +17,7 @@ const enemies := [
 
 var spawnedResourceObjects := 0
 var mergeItemNumber := 0
+var night := false
 
 func spawn_item_drop(itemStats: ItemStats, amount: int, location: Vector2) -> void:
 	var itemDrop = itemDropScene.instantiate() as StaticBody2D
@@ -37,7 +38,6 @@ func merge_items(firstItem: Item, secondItem: Item):
 
 func spawn_resource_object() -> void:
 	if spawnedResourceObjects < 100:
-		spawnedResourceObjects+= 1
 		var resource = resourceObject.instantiate() as ResourceObjects
 		resource.stats = resourceObjects.pick_random()
 		var location = Vector2(randi_range(0, 1000), randi_range(0, 1000))
@@ -53,6 +53,9 @@ func spawn_enemy() -> void:
 		enemyPosition = Vector2(randi_range(0, 1000), randi_range(0, 1000))
 	enemy.global_position = enemyPosition
 	get_world().add_child(enemy)
+
+func change_day_time() -> void:
+	night = !night
 
 func get_nav_region() -> NavigationRegion2D:
 	return get_world().get_node("navRegion")

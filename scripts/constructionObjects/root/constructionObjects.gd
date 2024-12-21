@@ -64,16 +64,16 @@ func _on_turret_cooldown_timeout() -> void:
 	animation.play("shoot")
 	GameManager.play_sound(shootSound, global_position)
 	CameraManager.apply_shake(1)
-	if (target.get_node("entitiesHealthComponent").health - stats.damage) <= 0:
+	if (target.get_node_or_null("entitiesHealthComponent").health - stats.damage) <= 0:
 		targets.erase(target)
-		target.get_node("entitiesHealthComponent").damage(stats.damage)
+		target.get_node_or_null("entitiesHealthComponent").damage(stats.damage)
 		target = null
 		if targets:
 			target = targets.pick_random()
 		else:
 			turretCooldownTimer.stop()
 	else:
-		target.get_node("entitiesHealthComponent").damage(stats.damage)
+		target.get_node_or_null("entitiesHealthComponent").damage(stats.damage)
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("E") and interactText.visible == true:

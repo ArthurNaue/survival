@@ -1,12 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cuqhbkv4j2b1s"]
+[gd_scene load_steps=9 format=3 uid="uid://cuqhbkv4j2b1s"]
 
 [ext_resource type="PackedScene" uid="uid://brqvbt8euur7w" path="res://scenes/entities/player/root/player.tscn" id="1_orl44"]
 [ext_resource type="Script" path="res://scripts/world/root/world.gd" id="1_w3wjl"]
 [ext_resource type="PackedScene" uid="uid://bf6dnfpckiet0" path="res://scenes/world/campfire/root/campfire.tscn" id="3_4y18a"]
 [ext_resource type="Shader" path="res://assets/shaders/adaptColorPallete/root/adaptColorPalleteShader.gdshader" id="5_0qmt5"]
-[ext_resource type="PackedScene" uid="uid://t51b3ms8d6y2" path="res://scenes/entities/enemies/triangleEnemy/root/triangleEnemy.tscn" id="6_kyd0w"]
 [ext_resource type="Texture2D" uid="uid://df6jn1bi6bye" path="res://assets/images/pallete/root/gameColorPallete.png" id="6_qahwo"]
-[ext_resource type="PackedScene" uid="uid://wd7b6f7y2qqb" path="res://scenes/entities/enemies/rectangleEnemy/root/rectangleEnemy.tscn" id="7_08yjy"]
+[ext_resource type="PackedScene" uid="uid://t51b3ms8d6y2" path="res://scenes/entities/enemies/triangleEnemy/root/triangleEnemy.tscn" id="6_vgtku"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ad4y0"]
 shader = ExtResource("5_0qmt5")
@@ -60,11 +59,8 @@ position = Vector2(416, 494)
 
 [node name="sounds" type="Node2D" parent="."]
 
-[node name="triangleEnemy" parent="." instance=ExtResource("6_kyd0w")]
-position = Vector2(378, 399)
-
-[node name="rectangleEnemy" parent="." instance=ExtResource("7_08yjy")]
-position = Vector2(611, 381)
+[node name="triangleEnemy" parent="." instance=ExtResource("6_vgtku")]
+position = Vector2(379, 335)
 
 [connection signal="timeout" from="dayCicleTimer" to="." method="_on_day_cicle_timer_timeout"]
 [connection signal="timeout" from="navRegion/resourceObjects/spawnResourceObjectTimer" to="." method="_on_spawn_resource_object_timer_timeout"]

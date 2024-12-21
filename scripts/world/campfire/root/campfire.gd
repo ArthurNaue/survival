@@ -69,6 +69,7 @@ func verify_damage() -> void:
 			get_tree().change_scene_to_packed(gameOverScreen)
 		damageCooldown = true
 		damageCooldownTimer.start()
+		CameraManager.apply_shake(3)
 		GameManager.spawn_particle(breakParticle, global_position)
 		healthComponent.damage(1)
 		healthBarComponent.visible = true
@@ -83,6 +84,9 @@ func _on_damage_cooldown_timer_timeout() -> void:
 		damageCooldown = false
 		damageCooldownTimer.stop()
 
-func _on_anim_animation_finished(_anim: Animation) -> void:
-	if _anim == animation.get_animation("hit"):
-		animation.play("anim")
+func _on_anim_animation_finished(_anim) -> void:
+	if _anim == "hit":
+		if WorldManager.night:
+			animation.play("anim")
+		else:
+			animation.stop()

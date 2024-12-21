@@ -7,8 +7,6 @@ extends Node2D
 @export var entities: Node2D
 @export var forceColorPalleteShader: ColorRect
 
-var night := false
-
 func _ready() -> void:
 	resourceObjectsTimer.start()
 
@@ -20,9 +18,9 @@ func _on_spawn_resource_object_timer_timeout() -> void:
 	WorldManager.spawn_resource_object()
 
 func _on_day_cicle_timer_timeout() -> void:
-	night = !night
+	WorldManager.change_day_time()
 	
-	if night:
+	if WorldManager.night:
 		campfire.turn_lights_on()
 		resourceObjectsTimer.stop()
 		
